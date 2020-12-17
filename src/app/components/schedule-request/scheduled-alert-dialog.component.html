@@ -1,0 +1,10 @@
+<div class="container">
+  <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+      <span class="mat-h4 crs-dialog-title">Schedule Request</span>
+  </div>
+<div class="row dialog-content justify-content-center">
+  <p>{{alertMessage}}</p>
+  <div class="row justify-content-center">
+     <button class="btn bg-dark" mat-button [mat-dialog-close]="schedulingSuccess" cdkFocusInitial aria-label="Ok">OK</button>
+  </div>
+</div>

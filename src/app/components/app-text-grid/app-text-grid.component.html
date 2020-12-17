@@ -1,0 +1,23 @@
+<section class="container">
+  <div class="row" [ngClass]="{
+    'detail-bar': showLaunchIcon
+  }">
+    <span class="col-xs-12 app-text-title-wrap" style="align-items: center; justify-content: center;">
+      {{propertyTitle | uppercase}}
+      <mat-icon *ngIf="showLaunchIcon" color="lightgray" style="font-size: 15px;">launch</mat-icon>
+    </span>
+  </div>
+
+  <div class="row" style="padding-top: 10px;" *ngIf="isListingRental">
+    <span class="col-xs-12 app-text-rent-deposit">
+      <span class="rent-float-left">Rent: &#8377; {{propertyValue | number}}</span>
+      <span class="deposit-float-right">Deposit: &#8377; {{propertyDeposit | number}}</span>
+    </span>
+  </div>
+
+  <div class="row" style="padding-top: 10px;" *ngIf="isListingSale">
+    <span class="col-xs-12 app-text-rent-deposit text-center">
+      <span>Property Cost: &#8377; {{propertyValue | number}}</span>
+    </span>
+  </div>
+</section>

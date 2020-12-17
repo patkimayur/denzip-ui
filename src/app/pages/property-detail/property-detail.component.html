@@ -1,0 +1,32 @@
+<div>
+    <mat-card>
+        <mat-card-subtitle>
+            <app-text-grid [listing]="listing" [showLaunchIcon]=false></app-text-grid>
+        </mat-card-subtitle>
+        <mat-card-content>
+            <section class="container crs-internal-container">
+                <div class="row">
+                    <span class="col-md-6" style="margin: auto;">
+                        <app-ng-carousel [listing]="listing" [cardLayout]=false></app-ng-carousel>
+                    </span>
+                    <span class="col-md-6">
+
+                        <app-info-grid></app-info-grid>
+                        <app-amenities></app-amenities>
+                        <app-interested-users [listing]="listing"></app-interested-users>
+                        <div style="position: sticky; position: -webkit-sticky; bottom: 0px; width: 100%; background-color: white; padding-top: 10px; padding-bottom: 10px;">
+                            <div><app-listing-status-buttons [listing]="listing"></app-listing-status-buttons></div>
+                        </div>
+                    </span>
+
+                </div>
+            </section>
+
+            <div (deferLoad)="listing.showMapLocality = true">
+                <app-location-map *ngIf="listing.showMapLocality" [selectedLocalityCategoryIndex]="selectedLocalityCategoryIndex"></app-location-map>
+                <app-locality *ngIf="listing.showMapLocality" (selectedCategoryIndexUpdate)="selectedCategoryIndexUpdateHandler($event)"></app-locality>
+                <app-detail-info *ngIf="listing.showMapLocality" [listing]="listing"></app-detail-info>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

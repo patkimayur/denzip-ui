@@ -1,0 +1,378 @@
+<app-search></app-search>
+
+<section class="crs-section1 container" style="padding-top: 25px;padding-bottom: 25px;">
+  <div class="row">
+    <div class="col-6" style="padding-top: 20px;padding-bottom: 12px; border-right: 1px solid #999;text-align: center;">
+      <font style="font-weight: 900;font-size: -webkit-xxx-large;">
+        {{propertiesServed}} +
+      </font>
+      <p>Properties</p>
+    </div>
+    <div class="col-6" style="padding-top: 20px;padding-bottom: 12px;text-align: center;">
+      <font style="font-weight: 900;font-size: -webkit-xxx-large;">
+        {{customersServed}} +</font>
+      <p>Customers</p>
+    </div>
+    <!-- <div class="col-sm-4" style="padding-top: 20px;padding-bottom: 12px;text-align: center;">
+        <font style="font-weight: 900;font-size: -webkit-xxx-large;">
+          <ng2-odometer [number]=uniqueVisitors [config]="{ }"></ng2-odometer> +
+        </font>
+        <p>Visitors</p>
+      </div> -->
+  </div>
+</section>
+
+<!-- <section class="container">
+  <div class="text-center">
+    <h3 class="home-page-section1-h3">
+      Contact Us
+    </h3>
+    <p class="home-page-section1-h3-subheading">
+      Want to list your property:
+    </p>
+  </div>
+  <div class="row">
+    <div *ngIf=!isMobile class="col-sm-4">
+      <div class="contact-us-card text-center">
+        <img src="../../../assets/WhatsApp_Logo_3.png" alt="WhatsApp-logo" class="icon-display-home-page" style="margin-top: 22px;margin-bottom: 22px;margin-right: 13px;height: 60px;margin-left: 13px;"
+          aria-hidden="true">
+        <p style="padding-bottom: 20px;">WhatsApp +919945120961</p>
+      </div>
+    </div>
+    <div *ngIf=isMobile class="col-4">
+      <div class="contact-us-card text-center">
+        <a href="https://wa.me/919945120961?text=I Would Like To Rent / Sell Out My Property, Please Contact Me At This Number">
+          <img src="../../../assets/WhatsApp_Logo_3.png" [ngClass]="{
+            'align-icon-whatsapp': isSmallerScreen
+          }" class="icon-display-home-page" alt="WhatsApp-logo" style="margin-top: 22px;margin-bottom: 22px;margin-right: 13px;height: 60px;margin-left: 13px;"
+            aria-hidden="true">
+          <p>WhatsApp</p>
+        </a>
+      </div>
+    </div>
+    <div *ngIf=!isMobile class="col-sm-4">
+      <div class="contact-us-card text-center">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">
+          phone_callback</mat-icon>
+        <p style="padding-bottom: 20px;">Call +919945120961</p>
+      </div>
+    </div>
+    <div *ngIf=isMobile class="col-4">
+      <div class="contact-us-card text-center">
+        <a href="tel:+91 9945120961">
+          <mat-icon [ngClass]="{
+            'align-icon': isSmallerScreen
+          }" color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">phone_callback
+          </mat-icon>
+          <p>Call</p>
+        </a>
+      </div>
+    </div>
+    <div *ngIf=!isMobile class="col-sm-4">
+      <div class="contact-us-card text-center">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">textsms
+        </mat-icon>
+        <p style="padding-bottom: 20px;">SMS +919945120961</p>
+      </div>
+    </div>
+    <div *ngIf=isMobile class="col-4">
+      <div class="contact-us-card text-center">
+        <a href="sms:+91 9945120961;?&body=I Would Like To Rent / Sell Out My Property, Please Contact Me At This Number">
+          <mat-icon [ngClass]="{
+            'align-icon': isSmallerScreen
+          }" color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">textsms
+          </mat-icon>
+          <p>SMS</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="container" style="padding-top: 25px;padding-bottom: 25px;">
+  <div class="row">
+    <div class="col-sm-12" style="padding-top: 20px;padding-bottom: 12px;border-radius: 8px;box-shadow: 0 3px 13px #afa2a2;">
+      <div style="font-size: 15px;padding-bottom: 20px;text-align: center;"> Prospective properties specially chosen for you. Just tag your location and we will do the rest!!</div>
+      <mat-grid-list cols="1" rowHeight="30px">
+        <mat-grid-tile>
+          <div style="width: 100%" class="contact-us-card">
+            <button mat-button class="btn btn-dark btn-block" (click)="openPostRequirementDialog()" aria-label="Post your requirement">
+              <mat-icon style="margin-right: 5px;" color="lightgray">event_note</mat-icon>
+              <span class="mat-body-1">Post your requirement with us!!</span>
+            </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+</section>
+<!-- <section class="crs-section2" style="box-shadow: inset 0 3px 15px 2px #ccc;">
+  <div class="text-center">
+    <h3 class="home-page-section1-h3" style="text-decoration: underline; text-decoration-color: #669ddb;">
+      Earn cashback when your property is let out
+    </h3>
+    <p>
+      You would be eligible for cashback, when your property listed on Denzip
+      is let out either through Denzip or even without using the service offered by Denzip.
+      Have a property listed with us and is let out?</p> <a href="user-info">DEACTIVATE AND BE ELIGIBLE FOR CASHBACK</a>
+
+  </div>
+</section> -->
+<section class="crs-section2">
+  <div class="text-center">
+    <h3 class="home-page-section1-h3">
+      How Denzip helps
+    </h3>
+    <p class="home-page-section1-h3-subheading">
+      Denziping is very easy:
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="top-margin-description">
+        <h4 class="home-page-section1-h4"> For Tenants/Buyers </h4>
+      </div>
+      <div class="top-margin-description">
+        <div class="div-icon-home-page">
+          <div class="row">
+            <div class="col-sm-3 top-margin-description">
+              <div *ngIf=displayIcon class="text-center">
+                <mat-icon color="lightgray" class="icon-display-home-page">search</mat-icon>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="heading-description">
+                <div class="row">
+                  <h1>Search your den</h1>
+                </div>
+                <div class="row">
+                  <p>Search in your preferred locality for verified properties.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="div-icon-home-page">
+            <div class="row">
+              <div class="col-sm-3 top-margin-description">
+                <div *ngIf=displayIcon class="text-center">
+                  <mat-icon color="lightgray" class="icon-display-home-page">add_shopping_cart</mat-icon>
+                </div>
+              </div>
+              <div class="col-sm-9">
+                <div class="heading-description">
+                  <div class="row">
+                    <h1>Pick your den</h1>
+                  </div>
+                  <div class="row">
+                    <p>Choose from quality listings, sourced directly from owners and shortlist them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="div-icon-home-page">
+            <div class="row">
+              <div class="col-sm-3 top-margin-description">
+                <div *ngIf=displayIcon class="text-center">
+                  <mat-icon color="lightgray" class="icon-display-home-page">event</mat-icon>
+                </div>
+              </div>
+              <div class="col-sm-9">
+                <div class="heading-description">
+                  <div class="row">
+                    <h1>Schedule Visit</h1>
+                  </div>
+                  <div class="row">
+                    <p>Schedule visits for your shortlisted listings as per your convenience.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="div-icon-home-page">
+            <div class="row">
+              <div class="col-sm-3 top-margin-description">
+                <div *ngIf=displayIcon class="text-center">
+                  <mat-icon color="lightgray" class="icon-display-home-page">airline_seat_recline_extra</mat-icon>
+                </div>
+              </div>
+              <div class="col-sm-9">
+                <div class="heading-description">
+                  <div class="row">
+                    <h1>Visit the properties</h1>
+                  </div>
+                  <div class="row">
+                    <p style="margin-bottom: 1rem;">Visit the property by contacting owner</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- for owners starts from here-->
+    <!-- <div class="col-sm-6">
+      <div class="top-margin-description">
+        <h4 class="home-page-section1-h4"> For Owners </h4>
+      </div>
+      <div class="top-margin-description">
+        <div class="div-icon-home-page">
+          <div class="row">
+            <div class="col-sm-3 top-margin-description">
+              <div *ngIf=displayIcon class="text-center">
+                <mat-icon color="lightgray" class="icon-display-home-page">phone_iphone</mat-icon>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="heading-description">
+                <h1>Get in touch</h1>
+                <p *ngIf=isMobile>Contact Denzip via
+                  <a href="https://wa.me/919945120961?text=I Would Like To Rent / Sell Out My Property, Please Contact Me At This Number">WhatsApp</a>/
+                  <a href="sms:+91 99451 20961;?&body=I Would Like To Rent / Sell Out My Property, Please Contact Me At This Number">SMS</a>/
+                  <a href="tel:+91 99451 20961">Call</a>/
+                  <a href="tel:+91 99451 20961">MissedCall</a>
+                  at +919945120961 or
+                  <a href routerLink="." (click)="requestCallBack()">Request Callback</a>
+                </p>
+                <p *ngIf=!isMobile>Contact Denzip via WhatsApp/SMS/Call/MissedCall at +919945120961 or
+                  <a href routerLink="." (click)="requestCallBack()">Request Callback</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="div-icon-home-page">
+          <div class="row">
+            <div class="col-sm-3 top-margin-description">
+              <div *ngIf=displayIcon class="text-center">
+                <mat-icon color="lightgray" class="icon-display-home-page">ring_volume</mat-icon>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="heading-description">
+                <h1>Experience Denzip Listing</h1>
+                <p>Denzip will facilitate listing it on our portal.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="div-icon-home-page">
+          <div class="row">
+            <div class="col-sm-3 top-margin-description">
+              <div *ngIf=displayIcon class="text-center">
+                <mat-icon color="lightgray" class="icon-display-home-page">airline_seat_recline_extra</mat-icon>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="heading-description">
+                <h1>Sit back and relax</h1>
+                <p>Denzip acquires photos of your property and describes your property to the finest detail.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="div-icon-home-page">
+          <div class="row">
+            <div class="col-sm-3 top-margin-description">
+              <div *ngIf=displayIcon class="text-center">
+                <mat-icon color="lightgray" class="icon-display-home-page">toggle_on</mat-icon>
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <div class="heading-description">
+                <h1>Display your listing to Denzipers</h1>
+                <p>Activate your property and voila!!!!, your listing is now available to all Denzipers.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>  -->
+  </div>
+</section>
+
+<section class="crs-section2">
+  <div>
+    <h3 class="home-page-section1-h3">Why Denzip</h3>
+    <p class="home-page-section1-h3-subheading text-center">
+      Denzip provides you:
+    </p>
+  </div>
+  <div>
+    <div class="row text-center">
+      <div class="col-sm-3 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">verified_user</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">Verified & Consistent</h4>
+        <p>Choose from wide variety of 100% verified, quality and consistent listing</p>
+      </div>
+
+      <div class="col-sm-3 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">thumb_up_alt</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">Zero Charges</h4>
+        <p>Zero charges for listing through Denzip</p>
+      </div>
+
+      <div class="col-sm-3 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">mood</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">No Brokerage</h4>
+        <p>No brokerage charges for non exclusive property.</p>
+      </div>
+
+      <div class="col-sm-3 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">people</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">Standard Brokerage for Partner Listings</h4>
+        <p>Standard brokerage charges applicable for broker listed properties</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="crs-section2">
+  <div>
+    <h3 class="home-page-section1-h3">Partner With Denzip</h3>
+    <p class="home-page-section1-h3-subheading text-center">
+      Help to build NextGen PropTech platform & Earn:
+    </p>
+  </div>
+  <div>
+    <div class="row text-center">
+      <div class="col-sm-4 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">share</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">Share a lead</h4>
+        <p>
+          Share a confirmed lead of apartment or house in gated society available for rent
+        </p>
+
+      </div>
+      <div class="col-sm-4 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">attach_money</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">Partner & Earn</h4>
+        <p>
+          Get Instant Cash of Rs 250 as soon as we onboard the property
+          <b>OR</b> get 5% of first month's rent after deal is closed
+        </p>
+      </div>
+      <div class="col-sm-4 top-margin">
+        <mat-icon color="lightgray" class="icon-display-home-page" style="margin-bottom: 20px;">ring_volume</mat-icon>
+        <h4 class="home-page-section1-h4 top-margin-description">Contact Us</h4>
+        <p>
+          Contact us on +919945120961 over Phone Call / WhatsApp / SMS for more details
+        </p>
+      </div>
+
+
+    </div>
+  </div>
+</section> -->

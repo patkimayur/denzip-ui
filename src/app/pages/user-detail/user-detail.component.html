@@ -1,0 +1,71 @@
+<h2>Register / Update User</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <mat-form-field class="width100">
+      <input matInput placeholder="Full Name" formControlName="username" [(ngModel)]="username"
+        [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" required
+        pattern="[A-Za-z]+[.]*\s*[A-Za-z. ]*" />
+    </mat-form-field>
+    <mat-error class="invalid-feedback" *ngIf="submitted && f['username'].errors && f['username'].errors.required">
+      Username is required</mat-error>
+    <mat-error class="invalid-feedback" *ngIf="submitted && f['username'].errors && f['username'].errors.pattern">
+      Username can contain only A-Z a-z
+      space and .</mat-error>
+  </div>
+  <div class="form-group">
+    <mat-form-field style="width: 30%">
+      <div style="display: flex;">
+        <input matInput placeholder="Code" name="countryCode" formControlName="countryCode" [(ngModel)]="countryCode"
+        [ngClass]="{ 'is-invalid': submitted && f.countryCode.errors }" required pattern="[0-9]+">
+        <mat-error class="invalid-feedback"
+        *ngIf="submitted && f['countryCode'].errors && f['countryCode'].errors.required">
+        Code is required
+      </mat-error>
+      <mat-error class="invalid-feedback"
+        *ngIf="submitted && f['countryCode'].errors && f['countryCode'].errors.pattern">
+        Numeric Code Only
+      </mat-error>
+      </div>
+    </mat-form-field>
+    <mat-form-field style="width: 70%" *ngIf="loginForm.get('countryCode').value == '91'">
+      <div style="display: flex;">
+        <input matInput placeholder="Phone Number" formControlName="phoneNumber" [(ngModel)]="phoneNumber"
+          [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" required pattern="[6-9]\d{9}" />
+      </div>
+      <mat-error class="invalid-feedback"
+        *ngIf="submitted && f['phoneNumber'].errors && f['phoneNumber'].errors.required">
+        Phone Number is required
+      </mat-error>
+      <mat-error class="invalid-feedback"
+        *ngIf="submitted && f['phoneNumber'].errors && f['phoneNumber'].errors.pattern">
+        Not a valid mobile number.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 70%" *ngIf="loginForm.get('countryCode').value != '91'">
+      <div style="display: flex;">
+        <input matInput placeholder="Phone Number" formControlName="internationMobileNumber"
+          [(ngModel)]="phoneNumber" required/>
+      </div>
+      <mat-error class="invalid-feedback"
+        *ngIf="submitted && f['internationMobileNumber'].errors && f['internationMobileNumber'].errors.required">
+        Phone Number is required
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+  <div class="form-group">
+    <mat-form-field class="width100">
+      <input matInput placeholder="Email" formControlName="email" [(ngModel)]="email"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        pattern="^[A-Za-z0-9_.]+@[A-Za-z0-9_.]+(\.\w{2,3})+$" [required]="loginForm.get('countryCode').value != '91'"/>
+    </mat-form-field>
+    <mat-error class="invalid-feedback" *ngIf="submitted && f['email'].errors && f['email'].errors.pattern">
+      Email is invalid
+    </mat-error>
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn bg-dark btn-primary" aria-label="Login">Login</button>
+    <img *ngIf="loading"
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </div>
+</form>

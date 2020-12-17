@@ -1,0 +1,14 @@
+{
+  "/crs/*": {
+    "target": "https://localhost:8082",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/images/*": {
+    "target": "https://localhost:8082/crs",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

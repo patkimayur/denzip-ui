@@ -1,0 +1,102 @@
+<div class="mat-body-1">
+  <form (ngSubmit)="onSubmit()">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 display-flex width100">
+          <mat-form-field class="full-width"
+            [ngStyle]="{'margin-left.px': this.pageNavigationData.displayBedroomCountInput ? 0 : -15 }">
+            <input type="search" matInput placeholder="Search For Location - Only in Bangalore" id="search"
+              name="search" autocorrect="off" autocapitalize="off" spellcheck="off"
+              [(ngModel)]="pageNavigationData.currentSearchLocation" #search>
+          </mat-form-field>
+          <button mat-button class="btn margin-bottom-20" (click)="getLocation()"
+            [ngStyle]="{'margin-right.px': this.pageNavigationData.displayBedroomCountInput ? 0 : 15}"
+            style="border-bottom-width: 1px; border-color: darkgray; padding-bottom: 2px; border-radius: 0px; border-bottom-style: solid; min-width: 24px;" aria-label="My Location">
+            <mat-icon color="lightgray">my_location</mat-icon>
+          </button>
+          <button *ngIf=!displayBCF() mat-button class="btn btn-dark margin-bottom-20"
+            [ngStyle]="{'margin-right.px': this.pageNavigationData.displayBedroomCountInput ? 0 : -15 }" type="submit" aria-label="Search">
+            <mat-icon color="lightgray">search</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf=displayBCF() class="row padding-bottom-20">
+        <div class="col-sm-12 width100" style="padding-left: 0px; padding-right: 0px;">
+            <mat-grid-list cols="2" rowHeight="59px" [gutterSize]="'20px'">
+                <mat-grid-tile>
+                    <mat-form-field class="full-width" *ngIf="listingTypeFilter">
+                        <mat-select placeholder="{{listingTypeFilter.title}}" #listingType [(value)]="selectedListingType">
+                          <mat-option *ngFor="let condition of listingTypeFilter.conditions" [value]="condition.condition">
+                            {{condition.condition === 'Sale' ? 'Buy' : condition.condition}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field class="full-width" *ngIf="bedroomCountFilter">
+                        <mat-select placeholder="{{bedroomCountFilter.title}}" #bhkControl [(value)]="selected" multiple>
+                          <mat-option *ngFor="let condition of bedroomCountFilter.conditions" [value]="condition.condition">
+                            {{condition.condition}}</mat-option>
+                          <button mat-button class="btn sel-btn bg-dark" (click)="closeBhkControlSelectRef()"
+                            cdkFocusInitial aria-label="Ok">Ok</button>
+                        </mat-select>
+                      </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </div>
+      </div>
+      <div *ngIf=displayBCF() class=" row justify-content-center">
+        <span class="col-xs-12">
+            <button mat-button class="btn btn-dark" type="submit" aria-label="Search" style="margin: 5px; width: 160px;">
+                <mat-icon color="lightgray">search</mat-icon>
+                <span class="mat-body-1">Search</span>
+              </button>
+            </span>
+              <!-- <span class="col-xs-6">
+
+              <button mat-button class="btn btn-dark" type="button" (click)="navigateToRecentlyAdded()" aria-label="Recently Added" style="margin: 5px; width: 160px;"
+              [matBadge]="recentlyAddedListings" matBadgePosition="above after" matBadgeColor="warn">
+                  <mat-icon color="lightgray">new_releases</mat-icon>
+                  <span class="mat-body-1">All Recently Added</span>
+                </button>
+
+              </span> -->
+
+      </div>
+
+      <!-- <div *ngIf=displayBCF() class="row justify-content-center">
+        <span class="col-lg-3 col-md-6 justify-content-center text-center">
+            <button mat-button class="btn btn-dark" type="button" (click)="navigateToAllMarathahalli()" aria-label="Marathahalli & Surrounding Areas" style="margin: 5px; width: 190px;"
+            [matBadge]="marathahalliCount" matBadgePosition="above after" matBadgeColor="warn">
+                <mat-icon color="lightgray">place</mat-icon>
+                <span class="mat-body-1">Recent In Marathahalli</span>
+              </button>
+            </span>
+
+        <span class="col-lg-3 col-md-6 justify-content-center text-center">
+            <button mat-button class="btn btn-dark" type="button" (click)="navigateToAllKoramangala()" aria-label="Koramangala & Surrounding Areas" style="margin: 5px; width: 190px;"
+            [matBadge]="koramangalaCount" matBadgePosition="above after" matBadgeColor="warn">
+                <mat-icon color="lightgray">place</mat-icon>
+                <span class="mat-body-1">Recent In Koramangala</span>
+              </button>
+            </span>
+
+        <span class="col-lg-3 col-md-6 justify-content-center text-center">
+            <button mat-button class="btn btn-dark" type="button" (click)="navigateToAllBTM()" aria-label="BTM & Surrounding Areas" style="margin: 5px; width: 190px;"
+            [matBadge]="btmCount" matBadgePosition="above after" matBadgeColor="warn">
+                <mat-icon color="lightgray">place</mat-icon>
+                <span class="mat-body-1">Recent In BTM</span>
+              </button>
+            </span>
+
+            <span class="col-lg-3 col-md-6 justify-content-center text-center">
+            <button mat-button class="btn btn-dark" type="button" (click)="navigateToRecentlyAdded()" aria-label="Recently Added" style="margin: 5px; width: 190px;"
+              [matBadge]="pageNavigationData.recentlyAddedListings.length" matBadgePosition="above after" matBadgeColor="warn">
+                  <mat-icon color="lightgray">new_releases</mat-icon>
+                  <span class="mat-body-1">All Recently Added</span>
+                </button>
+              </span>
+      </div> -->
+    </div>
+  </form>
+</div>

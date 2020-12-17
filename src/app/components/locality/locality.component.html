@@ -1,0 +1,28 @@
+<div>
+  <span class="mat-h4 crs-page-sub-heading">Locality</span>
+  <div id="locality" (touchend)="swipe($event, 'end')" (touchstart)="swipe($event, 'start')">
+    <mat-tab-group [(selectedIndex)]="selected" (selectedIndexChange)="selectedCategoryIndexChanged($event)">
+      <mat-tab *ngFor="let category of localityData.categories; let i = index">
+
+        <ng-template mat-tab-label>
+          <span class="mat-body-2 locality-text">{{category.name | titlecase}}</span>
+        </ng-template>
+        <mat-grid-list cols="12" rowHeight="22px">
+          <div *ngFor="let resource of category.resources">
+            <mat-grid-tile class="crs-grid-border" [colspan]="8">
+              <span class="mat-body-1 locality-text" style="white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;">{{resource.name | titlecase}}</span>
+            </mat-grid-tile>
+            <mat-grid-tile class="crs-grid-border" [colspan]="2">
+              <span class="mat-body-1 locality-text">{{resource.duration | titlecase}}</span>
+            </mat-grid-tile>
+            <mat-grid-tile class="crs-grid-border" [colspan]="2">
+              <span class="mat-body-1 locality-text">{{resource.distance | titlecase}}</span>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

@@ -1,0 +1,209 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-dark overflow-and-height-auto">
+  <a class="navbar-brand" style="padding-top: 15px;" href="home">
+    <!-- <mat-icon style="font-size: 48px" color="lightgray">home</mat-icon> -->
+    <img class="logo" alt="logo" src="../../../assets/icon.png" />
+  </a>
+
+  <div class="crs-container">
+    <div class="top-bar-component crop" [ngClass]="{
+      'align-username': isUserNameLess
+    }">
+      <button matTooltip={{user}} mat-button style="padding: 0px;" class="btn navbar-toggler" type="button" [matMenuTriggerFor]="menuLogin"
+        data-toggle="collapse" aria-expanded="true">
+        <!-- <mat-icon>person</mat-icon> -->
+        <span class="information">{{user}}</span>
+      </button>
+      <mat-menu #menuLogin="matMenu" class="btn bg-dark">
+        <button class="btn" mat-menu-item *ngIf=showLogin() (click)="login()" aria-label="Login">
+          <mat-icon color="lightgray">person_outline</mat-icon>
+          <span>Login</span>
+        </button>
+        <button class="btn" mat-menu-item *ngIf=showLogout() (click)="updateVisitPreference()" aria-label="Update Visit Preference">
+          <mat-icon color="lightgray">settings</mat-icon>
+          <span>Update Visit Preference</span>
+        </button>
+        <button class="btn" mat-menu-item *ngIf=showLogout() (click)="navigateToUserInfo()" aria-label="My Listings">
+          <mat-icon color="lightgray">account_box</mat-icon>
+          <span>My Listings</span>
+        </button>
+        <button class="btn" mat-menu-item *ngIf=showLogout() (click)="navigateToUserProspectiveInfo()" aria-label="My Prospective Listings">
+          <mat-icon [matBadge]="cartBadgeForProspectiveListing" (cartBadgeUpdateEvent)="cartBadgeForPLUpdateEventHandler($event)" matBadgePosition="above after"
+          matBadgeColor="warn" color="lightgray">notifications_active</mat-icon>
+          <span>My Prospective Listings</span>
+        </button>
+        <button class="btn" mat-menu-item *ngIf=showLogout() (click)="navigateToUserInfoDisplay()" aria-label="My Information">
+          <mat-icon color="lightgray">info</mat-icon>
+          <span>My Information</span>
+        </button>
+        <button class="btn" mat-menu-item *ngIf=showLogout() (click)="logout()" aria-label="Logout">
+          <mat-icon color="lightgray">power_settings_new</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+
+    <div class="top-bar-component">
+      <button mat-icon-button class="btn navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" (click)="navigateToShortlistedListings()"
+        aria-label="Cart">
+        <mat-icon [matBadge]="cartBadge" (cartBadgeUpdateEvent)="cartBadgeUpdateEventHandler($event)" matBadgePosition="above after"
+          matBadgeColor="warn">shopping_cart</mat-icon>
+      </button>
+    </div>
+
+    <div class="top-bar-component">
+      <button class="navbar-toggler" type="button" [matMenuTriggerFor]="menuForNavbar" data-toggle="collapse" aria-controls="crsToggler"
+        aria-expanded="false" aria-label="Toggler">
+        <span class="navbar-toggler-icon">
+
+          <mat-menu #menuForNavbar="matMenu" class="btn bg-dark">
+            <button class="btn" mat-menu-item *ngIf=isUserAdminOrBroker() (click)="navigateToAddApartment()" aria-label="Add Apartment">
+              <mat-icon color="lightgray">library_add</mat-icon>
+              <span>Add Apartment</span>
+            </button>
+            <button class="btn" mat-menu-item *ngIf=isUserAdminOrBroker() (click)="navigateToAddListing()" aria-label="Add Listing">
+              <mat-icon color="lightgray">playlist_add</mat-icon>
+              <span>Add Listing</span>
+            </button>
+            <button class="btn" mat-menu-item *ngIf=isUserAdmin() (click)="navigateToAddBrokerOrg()" aria-label="Add Broker Org">
+              <mat-icon color="lightgray">playlist_add</mat-icon>
+              <span>Add Broker Org</span>
+            </button>
+            <button class="btn" mat-menu-item *ngIf=isUserAdmin() (click)="navigateToAddBrokerOrgMapping()" aria-label="Map Broker to Org">
+              <mat-icon color="lightgray">playlist_add</mat-icon>
+              <span>Map Broker to Org</span>
+            </button>
+            <button class="btn" mat-menu-item (click)="navigateToScheduleListings()" aria-label="Shortlisted For Itinerary">
+              <mat-icon color="lightgray">event</mat-icon>
+              <span>Shortlisted for Itinerary</span>
+            </button>
+           <!--  <button class="btn" mat-menu-item (click)="navigateToContactUs()" aria-label="Contact Us">
+              <mat-icon color="lightgray">accessibility_new</mat-icon>
+              <span>Contact us</span>
+            </button> -->
+            <button class="btn" mat-menu-item (click)="navigateToAboutUs()" aria-label="About Us">
+              <mat-icon color="lightgray">group</mat-icon>
+              <span>About us</span>
+            </button>
+          </mat-menu>
+        </span>
+      </button>
+    </div>
+  </div>
+
+
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="crsToggler">
+    <a class="navbar-brand" href="home">
+      <!-- <img class="logo" src="../../../assets/logo1.png"/> -->
+      <span style="padding-left: 40px;" mat-body-1>DENZIP</span>
+    </a>
+    <div class="container">
+      <div class="row">
+        <ul class="navbar-nav padding">
+          <li class="nav-item crop" [ngClass]="{
+          'align-username': isUserNameLess
+        }">
+            <a class="nav-link">
+              <button matTooltip={{user}} mat-button class="btn customButton-hover" [matMenuTriggerFor]="menu">
+                <!-- <mat-icon>person</mat-icon> -->
+                <span class="information">{{user}}</span>
+              </button>
+              <mat-menu #menu="matMenu" class="btn bg-dark">
+                <button class="btn customButton-hover" mat-menu-item *ngIf=showLogin() (click)="login()" aria-label="Login">
+                  <mat-icon color="lightgray">person_outline</mat-icon>
+                  <span class="information">Login</span>
+                </button>
+                <button class="btn customButton-hover" mat-menu-item *ngIf=showLogout() (click)="updateVisitPreference()" aria-label="Update Visit Preference">
+                  <mat-icon color="lightgray">settings</mat-icon>
+                  <span class="information">Update Visit Preference</span>
+                </button>
+                <button class="btn customButton-hover" mat-menu-item *ngIf=showLogout() (click)="navigateToUserInfo()" aria-label="My Listings">
+                  <mat-icon color="lightgray">account_box</mat-icon>
+                  <span class="information">My Listings</span>
+                </button>
+                <button class="btn customButton-hover" mat-menu-item *ngIf=showLogout() (click)="navigateToUserProspectiveInfo()" aria-label="My Prospective Listings">
+                    <mat-icon [matBadge]="cartBadgeForProspectiveListing" (cartBadgeUpdateEvent)="cartBadgeForPLUpdateEventHandler($event)" matBadgePosition="above after"
+                    matBadgeColor="warn" color="lightgray">notifications_active</mat-icon>
+                    <span class="information">My Prospective Listings</span>
+                </button>
+                <button class="btn customButton-hover" mat-menu-item *ngIf=showLogout() (click)="navigateToUserInfoDisplay()" aria-label="My Information">
+                  <mat-icon color="lightgray">info</mat-icon>
+                  <span class="information">My Information</span>
+                </button>
+                <button class="btn customButton-hover" mat-menu-item *ngIf=showLogout() (click)="logout()" aria-label="Logout">
+                  <mat-icon color="lightgray">power_settings_new</mat-icon>
+                  <span class="information">Logout</span>
+                </button>
+              </mat-menu>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToShortlistedListings()" aria-label="Cart">
+                <mat-icon [matBadge]="cartBadge" (cartBadgeUpdateEvent)="cartBadgeUpdateEventHandler($event)" matBadgePosition="above before"
+                  matBadgeColor="warn">shopping_cart
+                </mat-icon>
+                <span class="information ">Cart</span>
+              </button>
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToScheduleListings()" aria-label="Shortlisted for Itinerary">
+                <!-- <mat-icon>event</mat-icon> -->
+                <span class="information">Shortlisted for Itinerary</span>
+              </button>
+            </a>
+          </li>
+          <li class="nav-item " *ngIf=isUserAdminOrBroker()>
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToAddApartment()" aria-label="Add Apartment">
+                <!-- <mat-icon color="lightgray">library_add</mat-icon> -->
+                <span class="information">Add Apartment</span>
+              </button>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf=isUserAdminOrBroker()>
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToAddListing()" aria-label="Add Listing">
+                <!-- <mat-icon color="lightgray">playlist_add</mat-icon> -->
+                <span class="information">Add Listing</span>
+              </button>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf=isUserAdmin()>
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToAddBrokerOrg()" aria-label="Add Broker Org">
+                <!-- <mat-icon color="lightgray">playlist_add</mat-icon> -->
+                <span class="information">Add Broker Org</span>
+              </button>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf=isUserAdmin()>
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToAddBrokerOrgMapping()" aria-label="Map Broker to Org">
+                <!-- <mat-icon color="lightgray">playlist_add</mat-icon> -->
+                <span class="information">Map Broker to Org</span>
+              </button>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToContactUs()" aria-label="Contact Us">
+                <span class="information">Contact us</span>
+              </button>
+              <span class="sr-only">(current)</span>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link">
+              <button mat-button class="btn customButton-hover" (click)="navigateToAboutUs()" aria-label="About Us">
+                <span class="information">About us</span>
+              </button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

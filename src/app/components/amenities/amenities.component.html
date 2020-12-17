@@ -1,0 +1,25 @@
+<div style="padding-bottom: 10px;">
+  <span class="mat-h4 crs-page-sub-heading">Amenities</span>
+  <section class="container">
+    <div class="row">
+      <span class="col-sm-12 d-md-none crs-internal-container">
+        <mat-grid-list cols="2" rowHeight="22px">
+          <div *ngFor="let amenity of amenitiesList">
+            <mat-grid-tile class="crs-grid-border">
+              <span class="mat-body-1 amenities-text">{{amenity | titlecase}}</span>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </span>
+      <span class="col-md-12 d-none d-md-block crs-internal-container">
+        <mat-grid-list cols="4" rowHeight="22px">
+          <div *ngFor="let amenity of amenitiesList">
+            <mat-grid-tile class="crs-grid-border">
+              <span class="mat-body-1 amenities-text">{{amenity | titlecase}}</span>
+            </mat-grid-tile>
+          </div>
+        </mat-grid-list>
+      </span>
+    </div>
+  </section>
+</div>

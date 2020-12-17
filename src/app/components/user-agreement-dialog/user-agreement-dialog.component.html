@@ -1,0 +1,96 @@
+<div class="container">
+  <div *ngIf="fromDialog" mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+    <span class="mat-h4 crs-dialog-title">User Agreement</span>
+    <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()"
+      aria-label="Clear">
+      <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!fromDialog" class="mat-h2 app-text-title">User Agreement</div>
+  <div class="row dialog-content">
+    <div>
+      <h2 class="user-agreement-heading">General</h2>
+      <p class="user-agreement-content">These Terms and Conditions ("Agreement") governs the use of the services ("Service") that are made available by Denzip
+        Technologies private limited ("denzip.com", "we" or "us"). These Terms and Conditions represent the whole agreement
+        and understanding between denzip.com and the individual or entity who subscribes to our service ("Subscriber" or
+        "you"). PLEASE READ THIS AGREEMENT CAREFULLY. By activating the listing and by your use of the Service, you agree
+        to comply with all the terms and conditions set out in this Agreement. denzip.com may terminate your account at any
+        time, with or without notice, for conduct that is in breach of this Agreement, for conduct that denzip.com believes
+        is harmful to its business, or for conduct where the use of the Service is harmful to any other party. denzip.com
+        may, in its sole discretion, change or modify this Agreement at any time, with or without notice. You are responsible
+        to read this document regularly to ensure that your use of the Service remains in compliance with this Agreement.</p>
+
+      <h2 class="user-agreement-heading">Services</h2>
+      <p class="user-agreement-content">denzip.com offers services to enlist listings on our portals and provides you wide variety of quality, consistent listing
+        to choose from. You can select multiple listings as per choice and schedule visits for them. denzip.com will facilitate
+        the scheduling of visit by contacting the owner of the property and you.
+      </p>
+
+      <h2 class="user-agreement-heading"> Privacy and Permissions </h2>
+      <p class="user-agreement-content"> You agree to allow denzip.com or its representatives to visit your property and click pictures/photos to be used to
+        list your property on denzip.com. You allow denzip.com to communicate with you in any form based on the information
+        provided by you during creation of your user account. Based on your choices you allow denzip.com to collect information
+        only pertaining to the website related services to understand your interest in various properties. denzip.com adheres
+        to the highest level of privacy and will not distribute/use your information including your photos/contact information
+        in any form other than for website related services. denzip.com always strives to provide the best of services under
+        the purview of the local laws and adhere to the highest possible privacy conditions.</p>
+
+      <h2 class="user-agreement-heading">Eligibility</h2>
+      <p class="user-agreement-content"> You hereby represent and warrant to denzip.com that you are at least eighteen (18) years of age or above and are capable
+        of entering, performing and adhering to these Terms. While individuals under the age of 18 may utilize the Service
+        of the site, they shall do so only with the involvement & guidance of their parents and / or legal guardians, under
+        such Parent /Legal guardian's registered account. denzip.com reserves the right to cancel any content on its website
+        if deemed improper.</p>
+
+      <h2 class="user-agreement-heading">Pricing</h2>
+      <p class="user-agreement-content"> denzip.com is providing denzip listed properties for no brokerage. Denzip listed properties are properties listed by
+        denzip.com, sourced directly from the owners. denzip.com can control the pricing for denzip based listing and hence,
+        denzip.com is providing property search and shortlist including the itinerary, absolutely free. All trusted partner
+        listings may incur brokerage as per the trusted partner specification. Denzip trusted partner include anyone who
+        is associated with denzip.com as part of the trusted partner agreement. Denzip promotions can be changed as per Denzip's discretion
+        and Denzip will hold the final authority to decide pricing.
+      </p>
+
+      <h2 class="user-agreement-heading">Limitation of Liability</h2>
+      <p class="user-agreement-content">The Service is provided on an "as is" and "as available" basis and the use of the Service is at your own risk. denzip.com
+        makes no representations or warranties, either expressed or implied, with respect to the Service, or any service
+        or information provided through the Service. denzip.com is not responsible for any damages, injury or economic loss
+        arising from the use of the content or Service provided by denzip.com. In no event will denzip.com be liable to you
+        for any direct, indirect, incidental or consequential damages or economic loss arising out of the Service or any
+        other services or products provided to you. denzip.com, its directors, owners and employees shall in no way be liable
+        to you or anyone else for any loss or injury resulting from the use of the Service.</p>
+
+      <h2 class="user-agreement-heading">Force Majeure</h2>
+      <p class="user-agreement-content">denzip.com will not be liable for any delay, interruption or failure in the provisioning of services if caused by acts
+        of God, declared or undeclared war, fire, flood, storm, slide, earthquake, power failure, the inability to obtain
+        equipment, supplies or other facilities that are not caused by a failure to pay, labor disputes, or other similar
+        events beyond our control that may prevent or delay service provisioning.</p>
+
+      <h2 class="user-agreement-heading">Unenforceable Provisions</h2>
+      <p class="user-agreement-content">If any part of this Agreement is found to be invalid or unenforceable under applicable law, such part will be ineffective
+        to the extent of such invalid or unenforceable part only, without affecting the remaining parts of this Agreement
+        in any way.</p>
+
+      <h2 class="user-agreement-heading">Disclaimer for RERA</h2>
+      <p class="user-agreement-content">All the builders/projects/real estate agents/brokers should comply with the RERA act 2016 and obtain the said registration
+        under the act. Although, denzip.com does not guarantee that builders/projects/real estate agents/brokers have registered
+        under the act or are compliant with the same.In no event will denzip.com be liable for any claim made by user regarding
+        inaccuracies in the info provided by site.</p>
+
+      <h2 class="user-agreement-heading">E-mail and sms updates</h2>
+      <p class="user-agreement-content">denzip.com may need to communicate with you via e-mail and sms about our service. You agree to recieve e-mails and
+        sms from denzip.com for communication pertaining to business of denzip.com.</p>
+
+      <h2 class="user-agreement-heading">Selling/buying/Renting of property</h2>
+      <p class="user-agreement-content">In no event, can denzip.com be held liable for any inaccuracies in the info provided by denzip.com as this info is
+        provided by owners/brokers of the flat and is taken on face value. We try to perform due diligence before listing
+        any property on our portal. The payment and other legal procedures are purely between the buyee and the buyer and
+        denzip.com in no event will be held responsible for any of the dealings. </p>
+
+    </div>
+  </div>
+  <div *ngIf="fromDialog" class="row justify-content-center">
+    <button mat-button class="btn bg-dark margin-right-50" (click)="onNoClick()" aria-label="Disagree">Disagree</button>
+    <button mat-button class="btn bg-dark" (click)="storeResult()" cdkFocusInitial aria-label="Agree">Agree</button>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+    <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+        <span class="mat-h4 crs-dialog-title">Login</span>
+      <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()" aria-label="Clear">
+        <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+      </button>
+    </div>
+  <div class="row dialog-content">
+    <mat-label>{{data.message}}</mat-label>
+    <form class="otp-form" [formGroup]="userOtpValidations">
+      <mat-form-field appearance="outline" class="form-field col-sm-6">
+        <mat-label>OTP</mat-label>
+        <input matInput formControlName="otp">
+        <mat-error *ngIf="userOtpValidations.get('otp').hasError('required')">
+          This field is mandatory.
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <button mat-button *ngIf="btnDisable == false" class="background-light-gray" (click)="resendOtp()">Resend OTP</button>
+  </div>
+  <div class="row justify-content-center">
+    <button mat-button class="btn bg-dark margin-right-50" (click)="onNoClick()" aria-label="Cancel">Cancel</button>
+    <button mat-button class="btn bg-dark" (click)="storeResult()" cdkFocusInitial aria-label="Ok">Ok</button>
+  </div>
+</div>

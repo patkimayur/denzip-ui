@@ -1,0 +1,50 @@
+<div>
+  <div class="mat-h2 app-text-title">Add Apartment</div>
+  <form #f="ngForm">
+    <div class="mat-body-1">
+      <mat-form-field class="width100">
+        <input matInput name="apartmentName" placeholder="Apartment Name" [(ngModel)]="apartment.apartmentName" required>
+      </mat-form-field>
+
+      <div class="row">
+        <button mat-icon-button class="btn" color="primary" (click)="getLocation()">
+          <mat-icon>my_location</mat-icon>
+        </button>
+        <mat-form-field style="width: 25%">
+          <input matInput name="apartmentLatitude" placeholder="Apartment Latitude" [(ngModel)]="apartment.apartmentLatitude" required>
+        </mat-form-field>
+        <mat-form-field class="margin-left-15" style="width: 25%">
+          <input matInput name="apartmentLongitude" placeholder="Apartment Longitude" [(ngModel)]="apartment.apartmentLongitude" required>
+        </mat-form-field>
+      </div>
+
+      <agm-map [fullscreenControl]='true' [latitude]=apartment.apartmentLatitude [longitude]=apartment.apartmentLongitude [zoom]=18
+        style="width: 100%">
+      
+        <agm-marker [latitude]=apartment.apartmentLatitude [longitude]=apartment.apartmentLongitude [markerDraggable]=true
+          [markerClickable]=false (dragEnd)="markerDragEnd($event)">
+        </agm-marker>
+      </agm-map>
+
+      <div>
+        <mat-grid-list [cols]="breakpoint" rowHeight="22px" (window:resize)="onResize($event)">
+          <mat-grid-tile *ngFor="let amenityName of getAmenitiesName()" class="crs-grid-border">
+            <label class="amenities-text"
+              style="margin-right: 5px;margin-left: 5px; margin-bottom: 0px; border-radius: 4px; padding-left: 5px; padding-right: 5px;">
+              <input type="checkbox" name="amenityName" [(ngModel)]="apartment.apartmentAmenities[amenityName]">
+              <span class="mat-body-1">{{amenityName | titlecase}}</span>
+            </label>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+
+    <div>
+      <app-file-upload (crsImagesUpdateEvent)="crsImagesUpdateEventHandler($event)" [entityId]="createdApartmentId" [entityType]="'apartment'"></app-file-upload>
+    </div>
+
+    <button mat-button type="submit" class="btn btn-dark" [disabled]='!f.valid' (click)="addApartment()">
+      Add Apartment
+    </button>
+  </form>
+</div>

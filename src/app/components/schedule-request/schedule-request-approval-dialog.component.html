@@ -1,0 +1,16 @@
+<div class="container">
+    <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+        <span class="mat-h4 crs-dialog-title">Schedule Request Confirmation</span>
+      <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()">
+        <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+      </button>
+    </div>
+  <div class="row dialog-content justify-content-center">
+        <p>As you have decided to schedule visit, Denzip will work to contact the owner/s of the property and create an itinerary based on your and owner's availability.
+          As part of this process Denzip will send you an itinerary for your visit. Your shortlisted properties will be available under "Shortlisted for Itinerary" tab</p>
+  </div>
+  <div class="row justify-content-center">
+    <button mat-button class="btn bg-dark margin-right-50" (click)="onNoClick()" aria-label="Cancel">Cancel</button>
+    <button mat-button class="btn bg-dark" (click)="storeResult()" cdkFocusInitial aria-label="Ok">Ok</button>
+  </div>
+</div>

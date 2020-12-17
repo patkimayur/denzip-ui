@@ -1,0 +1,24 @@
+<div>
+  <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+    <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;"
+      (click)="onNoClick()" aria-label="Clear">
+      <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+    </button>
+  </div>
+  <span class="mat-h4 crs-page-sub-heading">Sort By</span>
+
+  <mat-radio-group aria-labelledby="sort-radio-group-label" class="sort-radio-group mat-body-1" [(ngModel)]="appliedSortKey">
+    <mat-radio-button class="sort-radio-button mat-body-1" *ngFor="let sortData of sortDataWrapper.sortDataList" [value]="sortData.sortKey" color="primary">
+      {{sortData.sortValue}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <div mat-dialog-actions>
+    <button class="btn bg-dark" mat-button (click)="onNoClick()" aria-label="Return">
+      <span class="mat-body-1">Return</span>
+    </button>
+    <button class="btn bg-dark" mat-button [mat-dialog-close]="appliedSortKey" aria-label="Apply">
+      <span class="mat-body-1">Apply</span>
+    </button>
+  </div>
+</div>

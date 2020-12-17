@@ -1,0 +1,51 @@
+<div class="container">
+  <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+      <span class="mat-h4 crs-dialog-title">{{title}}</span>
+    <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()" aria-label="Clear">
+      <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+    </button>
+  </div>
+  <div class="row dialog-content">
+    <form class="otp-form" [formGroup]="userMobileValidations">
+        <div class="row" style="padding-left: 15px; padding-right: 15px;">
+        <mat-form-field appearance="outline" class="form-field" style="width: 30%">
+            <mat-label>Code</mat-label>
+            <div style="display: flex;">
+       <input matInput name="countryCode" formControlName="countryCode">
+            </div>
+            <mat-error *ngIf="userMobileValidations.get('countryCode').hasError('required')">
+              This field is mandatory.
+            </mat-error>
+            <mat-error *ngIf="userMobileValidations.get('countryCode').hasError('pattern')">
+              Numeric Code Only
+            </mat-error>
+        </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field" style="width: 70%" *ngIf="userMobileValidations.get('countryCode').value == '91'">
+        <mat-label>10-digit Mobile Number</mat-label>
+        <div style="display: flex;">
+        <input matInput placeholder="10-digit Number" formControlName="mobileNumber" (keypress)="keyPress($event)" maxlength="10">
+        </div>
+        <mat-error *ngIf="userMobileValidations.get('mobileNumber').hasError('required')">
+          This field is mandatory.
+        </mat-error>
+        <mat-error *ngIf="userMobileValidations.get('mobileNumber').hasError('pattern')">
+          Not a valid mobile number.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field" style="width: 70%" *ngIf="userMobileValidations.get('countryCode').value != '91'">
+          <mat-label>Mobile Number</mat-label>
+          <div style="display: flex;">
+          <input matInput placeholder="Mobile Number" formControlName="internationMobileNumber">
+          </div>
+          <mat-error *ngIf="userMobileValidations.get('internationMobileNumber').hasError('required')">
+            This field is mandatory.
+          </mat-error>
+        </mat-form-field>
+    </div>
+    </form>
+  </div>
+  <div class="row justify-content-center">
+    <button mat-button class="btn bg-dark margin-right-50" (click)="onNoClick()" aria-label="Cancel">Cancel</button>
+    <button mat-button class="btn bg-dark" (click)="storeResult()" cdkFocusInitial aria-label="Ok">Ok</button>
+  </div>
+</div>

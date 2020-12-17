@@ -1,0 +1,73 @@
+<section>
+  <div class="top-margin-description">
+    <div class="mat-h2 app-text-title">Contact us</div>
+  </div>
+  <div class="top-margin-description">
+    <div class="div-icon-home-page">
+      <div class="row">
+        <div *ngIf=displayIcon class="col-3 top-margin-description">
+          <div class="text-center">
+            <img src="../../../assets/WhatsApp_Logo_3.png" alt="WhatsApp-logo" class="icon-display-home-page" style="height: 65px;margin-top: 15px;" aria-hidden="true">
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="heading-description" style="margin-top: 35px;">
+            <h1 style="margin-right: 100%;">WhatsApp</h1>
+            <a *ngIf=isMobile href="https://wa.me/919945120961?text=I Would Like To Rent / Sell Out My Property, Please Contact Me At This Number">Message us on WhatsApp at +919945120961 to verify and list your property</a>
+            <p *ngIf=!isMobile>Message us on WhatsApp at +919945120961 to verify and list your property</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div-icon-home-page">
+      <div class="row">
+        <div *ngIf=displayIcon class="col-3 top-margin-description">
+          <div class="text-center">
+            <mat-icon color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">phone_callback</mat-icon>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="heading-description" style="margin-top: 35px;">
+            <h1 style="margin-right: 100%;">Call </h1>
+            <a *ngIf=isMobile href="tel:+91 9945120961">Call/Miss call us at +919945120961</a>
+            <p *ngIf=!isMobile>Call/Miss call us at +919945120961</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-icon-home-page">
+      <div class="row">
+        <div *ngIf=displayIcon class="col-3 top-margin-description">
+          <div class="text-center">
+            <mat-icon color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">textsms</mat-icon>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="heading-description" style="margin-top: 35px;">
+            <h1 style="margin-right: 100%;">SMS</h1>
+            <a *ngIf=isMobile href="sms:+91 9945120961;?&body=I Would Like To Rent / Sell Out My Property, Please Contact Me At This Number">SMS us at +919945120961</a>
+            <p *ngIf=!isMobile>SMS us at +919945120961</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div-icon-home-page">
+      <div class="row">
+        <div *ngIf=displayIcon class="col-3 top-margin-description">
+          <div class="text-center">
+            <mat-icon color="lightgray" class="icon-display-home-page" style="margin: 40px;color: darkslategray;">email</mat-icon>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="heading-description" style="margin-top: 35px;">
+            <h1 style="margin-right: 100%;">Other Queries</h1>
+            <a *ngIf=isMobile href="mailto:support@denzip.com">For any other queries/complaints/suggestions contact us via email - support@denzip.com</a>
+            <p *ngIf=!isMobile style="margin-bottom: 1rem;">For any other queries/complaints/suggestions contact us via email - support@denzip.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

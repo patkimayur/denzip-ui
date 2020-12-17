@@ -1,0 +1,232 @@
+<!-- TODO currently the design of this looks bad to have a default case to handle another switch case statement-->
+<!-- TODO this is done to handle if user has shortlisted a listing and owner deactivates it, then shortlisted listing should show the listing as deactivated-->
+<section class="container">
+  <div class="row">
+    <span class="col-sm-12 crs-internal-container">
+      <mat-grid-list cols="2" rowHeight="30px" [gutterSize]="'5px'">
+
+        <div [ngSwitch]="listing.currentLoggedInUserStatus">
+          <div *ngSwitchCase="'ACTIVATED'">
+            <mat-grid-tile [colspan]=2 class="listing-status-button-shadow-right">
+              <button type="button" class="btn-dark bg-danger" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="deactivateListing(listing)" aria-label="Deactivate Listing">
+                <mat-icon color="lightgray">thumb_down_alt</mat-icon>
+                <span class="mat-body-1">Deactivate Listing</span>
+              </button>
+            </mat-grid-tile>
+          </div>
+          <div *ngSwitchCase="'SYSTEM_PENDING_DEACTIVATION'">
+            <mat-grid-tile class="listing-status-button-shadow-left">
+              <button type="button" class="btn-dark bg-danger" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="deactivateListing(listing)" aria-label="Deactivate Listing">
+                <mat-icon color="lightgray">thumb_down_alt</mat-icon>
+                <span class="mat-body-1">Deactivate Listing</span>
+              </button>
+            </mat-grid-tile>
+            <mat-grid-tile class="listing-status-button-shadow-right">
+              <button type="button" class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="activateListing(listing)" aria-label="Refresh Listing">
+                <mat-icon color="lightgray">refresh</mat-icon>
+                <span class="mat-body-1">Refresh Listing</span>
+              </button>
+            </mat-grid-tile>
+          </div>
+          <div *ngSwitchCase="'PENDING_ACTIVATION'">
+            <mat-grid-tile [colspan]=2 *ngIf="!brokerListing" class="listing-status-button-shadow-right">
+              <button type="button" class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="activateListing(listing)" aria-label="Activate Listing">
+                <mat-icon color="lightgray">thumb_up_alt</mat-icon>
+                <span class="mat-body-1">Activate Listing</span>
+              </button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]=2 *ngIf="brokerListing">
+              <span class="text-light bg-danger" mat-menu-item disabled="true" style="width: 100%; text-align: center;">
+                <mat-icon color="lightgray">error</mat-icon>
+                <span class="mat-body-1">Pending Activation - Partner Listing</span>
+              </span>
+            </mat-grid-tile>
+          </div>
+          <div *ngSwitchCase="'DEACTIVATED'">
+            <mat-grid-tile [colspan]=2 *ngIf="!brokerListing" class="listing-status-button-shadow-right">
+              <button type="button" class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="activateListing(listing)" aria-label="ReActivate Listing">
+                <mat-icon color="lightgray">error</mat-icon>
+                <span class="mat-body-1">Deactivated - ReActivate Listing</span>
+              </button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]=2 *ngIf="brokerListing">
+              <span class="text-light bg-danger" mat-menu-item disabled="true" style="width: 100%; text-align: center;">
+                <mat-icon color="lightgray">error</mat-icon>
+                <span class="mat-body-1">Deactivated - Partner Listing</span>
+              </span>
+            </mat-grid-tile>
+          </div>
+          <div *ngSwitchCase="'SYSTEM_DEACTIVATED'">
+            <mat-grid-tile [colspan]=2 *ngIf="!brokerListing" class="listing-status-button-shadow-right">
+              <button type="button" class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="activateListing(listing)" aria-label="ReActivate Listing">
+                <mat-icon color="lightgray">error</mat-icon>
+                <span class="mat-body-1">Deactivated - ReActivate Listing</span>
+              </button>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]=2 *ngIf="brokerListing">
+              <span class="text-light bg-danger" mat-menu-item disabled="true" style="width: 100%; text-align: center;">
+                <mat-icon color="lightgray">error</mat-icon>
+                <span class="mat-body-1">Deactivated - Partner Listing</span>
+              </span>
+            </mat-grid-tile>
+          </div>
+          <div *ngSwitchDefault>
+            <div *ngIf="!listing.listingActiveInd; else elseTemplate">
+              <mat-grid-tile [colspan]=2 *ngIf="!isLoggedInUserAdmin">
+                <span class="text-light bg-danger" mat-menu-item disabled="true"
+                  style="width: 100%; text-align: center;">
+                  <mat-icon color="lightgray">error</mat-icon>
+                  <span class="mat-body-1">Deactivated - Rented / Sold Out</span>
+                </span>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]=2 *ngIf="isLoggedInUserAdmin">
+                <button type="button" class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;"
+                (click)="activateListing(listing)" aria-label="Activate Listing">
+                <mat-icon color="lightgray">thumb_up_alt</mat-icon>
+                <span class="mat-body-1">Activate Listing</span>
+              </button>
+              </mat-grid-tile>
+            </div>
+            <ng-template #elseTemplate>
+              <div [ngSwitch]="listing.currentLoggedInUserStatus">
+                <div *ngSwitchCase="'SHORTLISTED'">
+                  <mat-grid-tile class="listing-status-button-shadow-left">
+                    <button class="btn bg-dark" mat-menu-item style="width: 100%" (click)="removeFromCart(listing)" aria-label="Remove From Cart">
+                      <mat-icon color="lightgray">remove_shopping_cart</mat-icon>
+                      <span class="mat-body-1">Remove From Cart</span>
+                    </button>
+                  </mat-grid-tile>
+
+                  <mat-grid-tile class="listing-status-button-shadow-right">
+                    <button class="btn bg-dark" mat-menu-item style="width: 100%" (click)="scheduleVisit(listing)" aria-label="Schedule Visit">
+                      <mat-icon color="lightgray">event</mat-icon>
+                      <span class="mat-body-1">Schedule Visit</span>
+                    </button>
+                  </mat-grid-tile>
+                </div>
+                <div *ngSwitchCase="'PROSPECTIVE'">
+                    <div *ngIf="!listing.listingVirtualPresence" >
+                    <mat-grid-tile class="listing-status-button-shadow-left">
+                        <button class="btn bg-dark" mat-menu-item style="width: 100%;" (click)="addToCart(listing)" aria-label="Add To Cart">
+                          <mat-icon color="lightgray">add_shopping_cart</mat-icon>
+                          <span class="mat-body-1">Add To Cart</span>
+                        </button>
+                      </mat-grid-tile>
+
+                      <mat-grid-tile class="listing-status-button-shadow-right">
+                        <button class="btn bg-dark" mat-menu-item style="width: 100%;" (click)="scheduleVisit(listing)" aria-label="Schedule Visit">
+                          <mat-icon color="lightgray">event</mat-icon>
+                          <span class="mat-body-1">Schedule Visit</span>
+                        </button>
+                      </mat-grid-tile>
+                  </div>
+                    <div *ngIf="listing.listingVirtualPresence" style="margin-top: 10px;">
+                    <mat-grid-tile class="listing-status-button-shadow-left" [colspan]=2>
+                      <button class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;" (click)="getOwnerDetailsDirectly(listing)"
+                          aria-label="Get Owner Details">
+                          <mat-icon color="lightgray">contact_phone</mat-icon>
+                          <span class="mat-body-1">Get Owner Details</span>
+                      </button>
+                  </mat-grid-tile>
+                  <!-- <mat-grid-tile class="listing-status-button-shadow-left" [colspan]=2>
+                      <button class="btn-dark bg-danger" mat-menu-item style="width: 100%; text-align: center;" (click)="reportRentedOut(listing)"
+                          aria-label="Report Rented Out">
+                          <mat-icon color="lightgray">warning</mat-icon>
+                          <span class="mat-body-1">Report Rented Out</span>
+                      </button>
+                  </mat-grid-tile> -->
+                  </div>
+                  </div>
+                <div *ngSwitchCase="'SCHEDULING_REQUESTED'">
+                  <mat-grid-tile [colspan]=2>
+                    <span class="text-light bg-warning" mat-menu-item disabled="true"
+                      style="width: 100%; text-align: center;">
+                      <mat-icon color="lightgray">date_range</mat-icon>
+                      <span class="mat-body-1">Shortlisted for Itinerary</span>
+                    </span>
+                  </mat-grid-tile>
+                </div>
+                <div *ngSwitchCase="'SCHEDULED'">
+                  <mat-grid-tile [colspan]=2>
+                    <span class="text-light bg-info" mat-menu-item disabled="true"
+                      style="width: 100%; text-align: center;">
+                      <mat-icon color="lightgray">event_available</mat-icon>
+                      <span class="mat-body-1">Visit Scheduled</span>
+                    </span>
+                  </mat-grid-tile>
+                </div>
+                <div *ngSwitchCase="'VISITED'">
+                  <mat-grid-tile [colspan]=2>
+                    <span class="text-light bg-primary" mat-menu-item disabled="true"
+                      style="width: 100%; text-align: center;">
+                      <mat-icon color="lightgray">beenhere</mat-icon>
+                      <span class="mat-body-1">Visited</span>
+                    </span>
+                  </mat-grid-tile>
+                </div>
+                <div *ngSwitchCase="'ACCEPTED'">
+                  <mat-grid-tile [colspan]=2>
+                    <span class="text-light bg-success" mat-menu-item disabled="true"
+                      style="width: 100%; text-align: center;">
+                      <mat-icon color="lightgray">done</mat-icon>
+                      <span class="mat-body-1">Selected</span>
+                    </span>
+                  </mat-grid-tile>
+                </div>
+                <div *ngSwitchCase="'REJECTED'">
+                  <mat-grid-tile [colspan]=2>
+                    <span class="text-light bg-danger" mat-menu-item disabled="true"
+                      style="width: 100%; text-align: center;">
+                      <mat-icon color="lightgray">delete_forever</mat-icon>
+                      <span class="mat-body-1">Rejected</span>
+                    </span>
+                  </mat-grid-tile>
+                </div>
+
+                <div *ngSwitchDefault>
+                  <div *ngIf="!listing.listingVirtualPresence">
+                  <mat-grid-tile class="listing-status-button-shadow-left">
+                    <button class="btn bg-dark" mat-menu-item style="width: 100%;" (click)="addToCart(listing)" aria-label="Add To Cart">
+                      <mat-icon color="lightgray">add_shopping_cart</mat-icon>
+                      <span class="mat-body-1">Add To Cart</span>
+                    </button>
+                  </mat-grid-tile>
+
+                  <mat-grid-tile class="listing-status-button-shadow-right">
+                    <button class="btn bg-dark" mat-menu-item style="width: 100%;" (click)="scheduleVisit(listing)" aria-label="Schedule Visit">
+                      <mat-icon color="lightgray">event</mat-icon>
+                      <span class="mat-body-1">Schedule Visit</span>
+                    </button>
+                  </mat-grid-tile>
+                </div>
+                  <div *ngIf="listing.listingVirtualPresence" style="margin-top: 10px;">
+                    <mat-grid-tile class="listing-status-button-shadow-left" [colspan]=2>
+                      <button class="btn-dark bg-success" mat-menu-item style="width: 100%; text-align: center;" (click)="getOwnerDetailsDirectly(listing)"
+                          aria-label="Get Owner Details">
+                          <mat-icon color="lightgray">contact_phone</mat-icon>
+                          <span class="mat-body-1">Get Owner Details</span>
+                      </button>
+                  </mat-grid-tile>
+                  <!-- <mat-grid-tile class="listing-status-button-shadow-left" [colspan]=2>
+                      <button class="btn-dark bg-danger" mat-menu-item style="width: 100%; text-align: center;" (click)="reportRentedOut(listing)"
+                          aria-label="Report Rented Out">
+                          <mat-icon color="lightgray">warning</mat-icon>
+                          <span class="mat-body-1">Report Rented Out</span>
+                      </button>
+                  </mat-grid-tile> -->
+                </div>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </mat-grid-list>
+    </span>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<div *ngIf="bannerImage" (click)="openDialog()">
+  <div *ngIf="cardLayout">
+    <div class="top-left" *ngIf="brokerListing">
+      <img src="../../../assets/partner-listed.png" style="width: 80px; background-color: rgba(0,0,0,0.7); position: absolute;" alt="Partner Listed">
+    </div>
+    <div class="top-left" *ngIf="!brokerListing">
+      <img src="../../../assets/denzip-listed.png" style="width: 80px; background-color: rgba(0,0,0,0.7); position: absolute;" alt="Denzip Listed">
+    </div>
+    <img mat-card-image [src]="bannerImage" height=350px sizes="(min-width: 768px) 50vw, 100vw" srcset="{{bannerImageSrcSet}}" class="img"
+      (error)="onImageError($event)">
+  </div>
+  <div *ngIf="!cardLayout">
+    <div class="top-left" style="left: 60px;top: 45px;" *ngIf="brokerListing">
+      <img src="../../../assets/partner-listed.png" style="width: 80px; background-color: rgba(0,0,0,0.7); position: absolute;" alt="Partner Listed">
+    </div>
+    <div class="top-left" style="left: 60px;top: 45px;" *ngIf="!brokerListing">
+      <img src="../../../assets/denzip-listed.png" style="width: 80px; background-color: rgba(0,0,0,0.7); position: absolute;" alt="Denzip Listed">
+    </div>
+    <img [src]="bannerImage" height=350px sizes="(min-width: 768px) 50vw, 100vw" alt="bannerImage" srcset="{{bannerImageSrcSet}}" class="img" (error)="onImageError($event)">
+  </div>
+  <div class="center-right display-3" *ngIf="additionalImageCount > 0">+ {{additionalImageCount}}</div>
+  <div class="bottom-center-date mat-h3" *ngIf="bannerImage">Listed: {{createdDateValue}}</div>
+</div>

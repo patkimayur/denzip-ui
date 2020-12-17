@@ -1,0 +1,27 @@
+.center-right {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: white;
+}
+
+.bottom-center {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: white;
+}
+
+/* Dont change the top % to bottom absolute pixels as the arrangement for images which have user interested count go for a toss. */
+.bottom-center-date {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: white;
+}

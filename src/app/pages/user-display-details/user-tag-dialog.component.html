@@ -1,0 +1,14 @@
+<section class="container">
+    <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+        <span class="mat-h4 crs-dialog-title">Post your requirement</span>
+      <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()" aria-label="Clear">
+        <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+      </button>
+    </div>
+
+  <div class="row dialog-content">
+    <span class="col-sm-12 crs-internal-container">
+      <app-input-tag [dialogRef]="dialogRef"></app-input-tag>
+    </span>
+  </div>
+</section>

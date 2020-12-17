@@ -1,0 +1,190 @@
+<div [ngClass]="{'lock-page': isOverlayVisible }">
+  <div class="mat-h2 app-text-title" *ngIf="!existingListing">Add Property - {{brokerListing ? 'Broker' : 'Admin'}}</div>
+  <div class="mat-h2 app-text-title" *ngIf="existingListing">Update Property - {{brokerListing ? 'Broker' : 'Admin'}}</div>
+  <form #f="ngForm">
+    <div class="mat-body-1">
+      <mat-form-field class="width100" *ngIf="!existingListing">
+        <div style="display: flex;" *ngIf="!brokerListing">
+            <input matInput name="phoneNumber" placeholder="Listing Owner Mobile No. like 91 XXXXXXXXXX" [(ngModel)]="listing.userId"
+              required>
+        </div>
+        <div style="display: flex;" *ngIf="brokerListing">
+          <input matInput name="userId" placeholder="Broker Org Mobile No." [(ngModel)]="listing.userId" readonly=true
+          required>
+        </div>
+
+      </mat-form-field>
+
+      <mat-form-field class="width100" *ngIf="existingListing">
+        <input matInput name="userId" placeholder="Listing Owner User Id" [(ngModel)]="listing.userId" readonly=true
+        *ngIf="!brokerListing" required>
+        <input matInput name="userId" placeholder="Broker Org User Id" [(ngModel)]="listing.userId" readonly=true
+        *ngIf="brokerListing" required>
+      </mat-form-field>
+
+      <mat-form-field class="width100" *ngIf="brokerListing">
+        <input matInput name="brokerListingOwnerMobile" placeholder="Property Owner Mobile No." [(ngModel)]="listing.brokerListingOwnerMobile">
+      </mat-form-field>
+
+      <mat-form-field class="width100">
+        <input matInput name="listingTitle" placeholder="Listing Title - For eg. 1 BHK Apartment In Durga Rainbow, Mahadevpura" [(ngModel)]="listing.listingTitle" required>
+      </mat-form-field>
+
+      <mat-form-field class="width100">
+        <mat-select placeholder="Listing Type" name="listingType" [(ngModel)]="listing.listingType" required>
+          <mat-option *ngFor="let condition of listingTypeFilter.conditions" [value]="condition.condition">{{condition.condition}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="row">
+        <button mat-icon-button class="btn" color="primary" (click)="getLocation()">
+          <mat-icon>my_location</mat-icon>
+        </button>
+        <mat-form-field style="width: 25%">
+          <input matInput placeholder="Listing Latitude" name="listingLatitude" [(ngModel)]="listing.listingLatitude" type="number"
+            required>
+        </mat-form-field>
+        <mat-form-field class="margin-left-15" style="width: 25%">
+          <input matInput placeholder="Listing Longitude" name="listingLongitude" [(ngModel)]="listing.listingLongitude" type="number"
+            required>
+        </mat-form-field>
+      </div>
+
+      <agm-map [fullscreenControl]='true' [latitude]=listing.listingLatitude [longitude]=listing.listingLongitude [zoom]=18
+        style="width: 100%">
+
+        <agm-marker [latitude]=listing.listingLatitude [longitude]=listing.listingLongitude [markerDraggable]=true
+          [markerClickable]=false (dragEnd)="markerDragEnd($event)">
+        </agm-marker>
+      </agm-map>
+
+      <mat-form-field class="width100">
+        <input matInput placeholder="Listing Area" name="listingArea" [(ngModel)]="listing.listingArea" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field class="width100">
+        <input matInput placeholder="Listing Value" name="listingValue" [(ngModel)]="listing.listingValue" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field class="width100" *ngIf="isListingRental(listing)">
+        <input matInput placeholder="Listing Deposit" name="listingDeposit" [(ngModel)]="listing.listingDeposit" type="number" required>
+      </mat-form-field>
+
+      <mat-form-field class="width100">
+        <input matInput placeholder="Possession By (Month - Year)" name="listingPossessionBy" [(ngModel)]="listing.listingPossessionBy" type="month" required>
+      </mat-form-field>
+
+      <mat-form-field class="width100">
+        <mat-select placeholder="{{bedroomFilter.title}}" name="listingBedroomCount" [(ngModel)]="listing.listingBedroomCount" required>
+          <mat-option *ngFor="let condition of bedroomFilter.conditions" [value]="condition.condition">{{condition.condition}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngFor="let filter of filterList">
+        <div *ngIf="filter.filterType == 'ValueFilter'">
+          <div [ngSwitch]="filter.title">
+            <div *ngSwitchCase="'Property Type'">
+              <mat-form-field class="width100">
+                <mat-select placeholder="{{filter.title}}" name="listingPropertyType" [(ngModel)]="listing.propertyType"
+                  required>
+                  <mat-option *ngFor="let condition of filter.conditions" [value]="condition.condition">
+                    {{condition.condition}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Furnishing'">
+              <mat-form-field class="width100">
+                <mat-select placeholder="{{filter.title}}" name="listingFurnishingType" [(ngModel)]="listing.furnishingType"
+                  required>
+                  <mat-option *ngFor="let condition of filter.conditions" [value]="condition.condition">
+                    {{condition.condition}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Transaction Mode'">
+              <mat-form-field class="width100" *ngIf="isListingRental(listing)">
+                <mat-select placeholder="{{filter.title}}" name="listingTransactionMode" [(ngModel)]="listing.transactionMode"
+                  required>
+                  <mat-option *ngFor="let condition of filter.conditions" [value]="condition.condition">
+                    {{condition.condition}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Food Preference'">
+              <mat-form-field class="width100" *ngIf="isListingRental(listing)">
+                <mat-select placeholder="{{filter.title}}" name="listingNonVegAllowed" [(ngModel)]="listing.nonVegAllowed"
+                  required>
+                  <mat-option [value]="false">Non-Veg Not Allowed</mat-option>
+                  <mat-option [value]="true">Non-Veg Allowed</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Tenant Preference'">
+              <mat-form-field class="width100" *ngIf="isListingRental(listing)">
+                <mat-select placeholder="{{filter.title}}" name="listingBachelorAllowed"
+                  [(ngModel)]="listing.bachelorAllowed" required>
+                  <mat-option [value]="false">Bachelors Not Allowed</mat-option>
+                  <mat-option [value]="true">Bachelors Allowed</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div *ngSwitchDefault>
+              <mat-form-field class="width100">
+                <mat-select placeholder="{{filter.title}}-Missing">
+                  <mat-option *ngFor="let condition of filter.conditions" [value]="condition.condition">
+                    {{condition.condition}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field class="width100" *ngIf="listing.propertyType == 'Apartment'">
+        <mat-select placeholder="Apartment Name" name="listingApartmentId" [(ngModel)]="listing.apartment.apartmentId" required>
+          <mat-option *ngFor="let apartment of allApartments" [value]="apartment.apartmentId">{{apartment.apartmentName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-grid-list [cols]="breakpoint" rowHeight="22px" (window:resize)="onResize($event)">
+          <mat-grid-tile *ngFor="let amenityName of getAmenitiesName()" class="crs-grid-border">
+            <label class="amenities-text"
+              style="margin-right: 5px;margin-left: 5px; margin-bottom: 0px; border-radius: 4px; padding-left: 5px; padding-right: 5px;">
+              <input type="checkbox" name="amenityName" [(ngModel)]="listing.listingAmenities[amenityName]" [ngModelOptions]="{standalone: true}">
+              <span class="mat-body-1">{{amenityName | titlecase}}</span>
+            </label>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+
+    <div>
+      <span class="mat-body-strong" style="white-space: pre-wrap">
+        <div>Listing Address Details, like:</div>
+        <div>{{listingAddressHint}}</div>
+      </span>
+      <mat-form-field class="width100">
+        <textarea rows="7" matInput name="listingAddress" placeholder="Listing Address: Sample Format Above"
+          [(ngModel)]="listing.listingAddress" required></textarea>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <app-file-upload (crsImagesUpdateEvent)="crsImagesUpdateEventHandler($event)" [entityId]="createdListingId" [entityType]="'listing'"></app-file-upload>
+    </div>
+
+    <button mat-button type="submit" class="btn btn-dark" [disabled]='!f.valid' (click)="addListing()" *ngIf="!existingListing">
+      Add Property
+    </button>
+    <button mat-button type="submit" class="btn btn-dark" [disabled]='!f.valid' (click)="updateListing()" *ngIf="existingListing">
+      Update Property
+    </button>
+  </form>
+
+  <div *ngIf="listingCreationInProgress" class="app-loading" style="position: static">
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+  </div>
+</div>

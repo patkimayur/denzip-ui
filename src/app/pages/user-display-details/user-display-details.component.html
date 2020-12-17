@@ -1,0 +1,28 @@
+<section class="container">
+  <div class="mat-h2 app-text-title row margin-bottom-20">User Information</div>
+
+  <div class="row">
+    <span class="col-sm-12 crs-internal-container">
+      <mat-grid-list style="border-radius: 8px;box-shadow: 0 3px 13px #afa2a2;" cols="1" rowHeight="22px">
+        <mat-grid-tile class="crs-grid-border">
+          <span class="mat-body-1 amenities-text"> User Name : {{username | titlecase}}</span>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="crs-grid-border">
+          <span class="mat-body-1 amenities-text"> Email : {{email | titlecase}}</span>
+        </mat-grid-tile>
+
+        <mat-grid-tile class="crs-grid-border">
+          <span class="mat-body-1 amenities-text"> Phone Number : {{phoneNumber | titlecase}}</span>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+      <div style="margin-top: 50px;padding: 25px;border-radius: 8px;box-shadow: 0 3px 13px #afa2a2;">
+        <div class="mat-h2 app-text-title row margin-bottom-20">User Location Tags - Post your requirement </div>
+        <app-input-tag></app-input-tag>
+      </div>
+    </span>
+  </div>
+
+</section>

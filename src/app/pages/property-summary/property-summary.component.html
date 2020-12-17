@@ -1,0 +1,66 @@
+<div>
+  <div style="background-color: white; position: sticky; top: 0px; width: 100%; z-index: 30;">
+    <section class="container">
+      <div class="row">
+        <span class="col-md-8">
+          <app-search [pageHeading]="pageNavigationData.listingSummaryPageHeading"></app-search>
+        </span>
+        <span class="col-md-2 d-none d-md-block" style="padding-right: 0px;">
+          <app-filter (updatedFilterEvent)="receiveUpdatedFilters($event)"></app-filter>
+        </span>
+        <span class="col-md-2 d-none d-md-block" style="padding-right: 0px;">
+          <app-sort (updatedSortKeyEvent)="receiveSelectedSortKey($event)" [sortDataWrapper]="sortDataWrapper"></app-sort>
+        </span>
+      </div>
+    </section>
+  </div>
+  <div>
+    <div class="mat-h2 app-text-title">{{pageNavigationData.listingSummaryPageHeading | titlecase}}</div>
+    <app-property-summary-card [listings]="listings"> </app-property-summary-card>
+    <app-error-search-listing [listings]="listings"></app-error-search-listing>
+  </div>
+  <div style="position: sticky; position: -webkit-sticky; bottom: 0px; width: 100%; z-index: 30;">
+    <section class="container">
+      <div class="row">
+        <div class="col-sm-12 d-md-none" style="padding-left: 0px; padding-right: 0px;">
+          <mat-grid-list cols="2" rowHeight="30px">
+            <mat-grid-tile>
+              <span style="width: 100%">
+                <app-filter (updatedFilterEvent)="receiveUpdatedFilters($event)"></app-filter>
+              </span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <span style="width: 100%">
+                <app-sort (updatedSortKeyEvent)="receiveSelectedSortKey($event)" [sortDataWrapper]="sortDataWrapper"></app-sort>
+              </span>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div>
+    <section class="container" style="padding-top: 60px;">
+      <div class="row">
+        <div class="col-sm-12" style="padding-top: 20px;padding-bottom: 12px;border-radius: 8px;box-shadow: 0 3px 13px #afa2a2;">
+          <div style="font-size: 25px;padding-bottom: 20px;text-align: center;"> Didn't find what you were looking for?</div>
+          <mat-grid-list cols="1" rowHeight="30px">
+            <mat-grid-tile>
+              <div style="width: 100%" class="contact-us-card">
+                <button mat-button class="btn btn-dark btn-block" (click)="openPostRequirementDialog()" aria-label="Post your requirement">
+                  <mat-icon style="margin-right: 5px;" color="lightgray">event_note</mat-icon>
+                  <span class="mat-body-1">Post your requirement with us!!</span>
+                </button>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div *ngIf="listingSearchInProgress" class="app-loading" style="position: static">
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+  </div>
+</div>

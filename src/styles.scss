@@ -1,0 +1,899 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "theme.scss";
+@import "styles-variables.scss";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~nouislider/distribute/nouislider.min.css";
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap';
+
+// Font Families
+/* roboto-300 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Roboto Light'), local('Roboto-Light'),
+       url('./fonts/roboto-v19-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/roboto-v19-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto'), local('Roboto-Regular'),
+       url('./fonts/roboto-v19-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/roboto-v19-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+       url('./fonts/roboto-v19-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/roboto-v19-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+// Font Families End
+
+// The classes below is tech-debt and should be removed as we cleanup all pages.
+// Will keep them till all pages are revamped so that no pages are broken while we are in middle
+// If any of the below class is needed for strategic function, move them to stratgic section
+.headings {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.information {
+    font-size: 14px;
+}
+
+// tech debit end
+// Strategic section begins
+
+@mixin transition($in) {
+	transition:$in;
+	-webkit-transition:$in;
+	-moz-transition:$in;
+	-o-transition:$in;
+	-ms-transition:$in;
+}
+@mixin transform($in) {
+	transform:$in;
+	-webkit-transform:$in;
+	-moz-transform:$in;
+	-o-transform:$in;
+	-ms-transform:$in;
+}
+@mixin animation($in) {
+	animation:$in;
+	-webkit-animation:$in;
+	-moz-animation:$in;
+	-o-animation:$in;
+	-ms-animation:$in;
+}
+
+.contact-us-card {
+  border-radius: 8px;
+    box-shadow: 0 3px 13px #ccc;
+}
+
+.about-us-img {
+  width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.designation-about-us{
+  font-size: 20px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.name-about-us {
+  font-size: 24px;
+    line-height: 1.5;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.lock-page {
+  width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: .4;
+    pointer-events: none;
+}
+
+.customButton {
+	outline:none;
+	border:none;
+	padding:20px;
+	display:block;
+	cursor:pointer;
+	font-size:20px;
+	background-color:transparent;
+	position:relative;
+	border:2px solid #fff;
+
+	@include transition(all 0.5s ease);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+
+  /* Remove default */
+  -webkit-appearance: none;
+
+  /* Now your own custom styles */
+   height: 14px;
+   width: 14px;
+   display: block;
+   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAn0lEQVR42u3UMQrDMBBEUZ9WfQqDmm22EaTyjRMHAlM5K+Y7lb0wnUZPIKHlnutOa+25Z4D++MRBX98MD1V/trSppLKHqj9TTBWKcoUqffbUcbBBEhTjBOV4ja4l4OIAZThEOV6jHO8ARXD+gPPvKMABinGOrnu6gTNUawrcQKNCAQ7QeTxORzle3+sDfjJpPCqhJh7GixZq4rHcc9l5A9qZ+WeBhgEuAAAAAElFTkSuQmCC);
+  /* setup all the background tweaks for our custom icon */
+  background-repeat: no-repeat;
+
+  /* icon size */
+  background-size: 14px;
+
+}
+
+.customButton-hover {
+	&:hover {
+		background-color:rgb(128, 124, 124);
+		border-color:#fff;
+    color:#fff;
+	}
+}
+
+.customButton-hover.mat-menu-item:hover {
+  background-color:rgb(128, 124, 124);
+		border-color:#fff;
+    color:#fff;
+}
+
+.shake {
+	color:#fff;
+
+	&:hover {
+		border-color:$red;
+		color:$red;
+
+		@include animation(shakeThatButton 0.3s linear 1);
+	}
+}
+
+@keyframes shakeThatButton {
+	33% {
+		@include transform(rotateZ(40deg));
+	}
+	67% {
+		@include transform(rotateZ(-40deg));
+	}
+	100% {
+		@include transform(rotateZ(40deg));
+	}
+}
+
+* {
+    font-family: roboto, sans-serif;
+}
+
+.crs-page-sub-heading {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.icon-display-home-page {
+  transform: scale(3);
+}
+
+.crs-section1 {
+  width: 100%;
+  margin-top: 30px;
+  padding: 2em 0;
+  //background: #eee;
+}
+
+.crs-section2 {
+  width: 100%;
+  padding: 2em 0;
+}
+
+@media (min-width: map-get($grid-breakpoints, md)) {
+.heading-description {
+  margin-left: -20px;
+}
+
+.heading-description h1{
+  display: inline-block;
+    border-bottom: 1px solid #669ddb;
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.heading-description p{
+display: inline-block;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.home-page-section1-h3 {
+  font-size: 25px !important;
+  margin-bottom: 10px;
+  // color: #673ab7;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.home-page-section1-h4 {
+  font-size: 20px !important;
+  margin-bottom: 10px;
+  color: #669ddb;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.div-icon-home-page {
+  width: 100%;
+  margin: 40px 0 0 0;
+}
+
+.carousel-control-prev-icon{
+  height: 100px;
+  background-size: 100%, 100%;
+    border-radius: 50%;
+    background-color: gray;
+  width: 100px;
+}
+
+.carousel-control-next-icon{
+  height: 100px;
+  background-size: 100%, 100%;
+    border-radius: 50%;
+    background-color: gray;
+    width: 100px;
+}
+}
+
+@media (max-width: map-get($grid-breakpoints, sm)) {
+  .heading-description {
+    //margin-left: -20px;
+  }
+
+  .heading-description h1{
+    display: inline-block;
+      border-bottom: 1px solid #669ddb;
+      padding: 0 0 5px 0;
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      letter-spacing: 1px;
+  }
+
+  .heading-description p{
+  display: inline-block;
+      padding: 0 0 0 0;
+      margin: 0 0 0 0;
+      font-size: 16px;
+      letter-spacing: 1px;
+  }
+
+  .home-page-section1-h3 {
+    font-size: 25px !important;
+    //margin-bottom: 10px;
+    // color: #673ab7;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .home-page-section1-h4 {
+    font-size: 20px !important;
+    //margin-bottom: 10px;
+    color: #669ddb;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .div-icon-home-page {
+    width: 100%;
+    margin: 0 0 0 0;
+  }
+
+  .carousel-control-prev-icon{
+    height: 60px;
+      width: 100px;
+  }
+
+  .carousel-control-next-icon{
+    height: 60px;
+      width: 100px;
+  }
+  }
+
+  .top-left {
+    position: absolute;
+    // left: 10%;
+    // top: 23%;
+    left: 5px;
+    //top: 130px;
+    transform: translate(-50%, -50%);
+  }
+
+.crs-dialog-title {
+  width: 80%;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.crs-grid-border {
+    border-style: groove;
+    border-width: 1px;
+    border-color: #ababab;
+}
+
+.crs-internal-container {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.crs-container {
+    overflow:hidden;
+    display:inline;
+}
+
+.top-bar-component {
+    margin-left:10px;
+    float: left;
+}
+
+.detail-info-text {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.amenities-text {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-left: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.app-text-title {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 0px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.app-text-title-wrap {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 0px;
+  text-align: center;
+ // white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-text-rent-deposit {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 0px;
+    color: rgb(197, 18, 18);
+}
+
+.grid-buttons{
+  width: 200px;
+  background-color: darkgray;
+}
+
+.rent-float-left {
+    float: left;
+}
+
+.deposit-float-right {
+    float: right;
+}
+
+.info-grid-property {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 1px;
+    padding-right: 0px;
+    padding-left: 2px;
+}
+
+.locality-text {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0px;
+    padding-left: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listing-status-button-shadow-right {
+  box-shadow: 2px -3px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+.listing-status-button-shadow-left {
+  box-shadow: -2px -3px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+agm-map {
+    height: 300px;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.height450{
+  height: 450px;
+}
+
+.user-agreement-heading {
+  font-size: x-large;
+  font-family: monospace;
+}
+
+.user-agreement-content {
+  font-size: small;
+  font-family: monospace;
+  text-align: justify;
+}
+.dialog-btn {
+  width: 100%;
+}
+
+.dialog-btn-left{
+  width: 50%;
+}
+
+.search-bar-input{
+  width: 70%;
+  margin-right: 30px;
+}
+
+.justify-content-center{
+  justify-content: center;
+}
+
+.padding-bottom-20{
+  padding-bottom: 20px;
+}
+
+.margin-bottom-20{
+  margin-bottom: 20px !important;
+}
+
+.dialog-content{
+  padding-bottom: 10px;
+  justify-content: center;
+}
+
+.crs-dialog{
+  overflow: hidden;
+}
+
+.sel-btn {
+  margin: 13px !important;
+}
+
+.margin-right-50{
+  margin-right: 50px !important;
+}
+
+.margin-left-15{
+  margin-left: 15px !important;
+}
+
+.crs-mat-snackbar > .mat-simple-snackbar {
+  justify-content: center;
+}
+
+/* Shared */
+
+.loginBtn {
+  /* width: 13em;  - apply for fixed size */
+  margin: 0.4em !important;
+  padding: 0 15px 0 46px !important;
+  width: 225px;
+  color: #FFF;
+}
+
+.loginBtn:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+
+.loginBtn:focus {
+  outline: none;
+}
+
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Facebook */
+
+.loginBtn--facebook {
+  background-color: #4C69BA;
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C;
+}
+
+.loginBtn--facebook:before {
+  border-right: #364e92 1px solid;
+  background: url(../src/assets/fb-logo.png) -2px 0px no-repeat;
+    background-size: cover;
+}
+
+.loginBtn--facebook:hover, .loginBtn--facebook:focus {
+  background: #5B7BD5;
+}
+
+/* Google */
+
+.loginBtn--google {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #DD4B39;
+}
+
+.loginBtn--google:before {
+  border-right: #BB3F30 1px solid;
+  background: url(../src/assets/google_icon.png) -2px 0px no-repeat;
+    background-size: cover;
+    background-color: white;
+}
+
+.loginBtn--google:hover, .loginBtn--google:focus {
+  background: rgb(241, 91, 71);
+}
+
+/* Phone */
+
+.loginBtn--phone {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: rgb(57, 169, 221);
+}
+
+.loginBtn--phone:before {
+  border-right: rgb(57, 169, 221) 1px solid;
+  background: url(../src/assets/phone.png) -2px 0px no-repeat;
+  background-size: cover;
+  background-color: rgb(48, 174, 234);
+}
+
+.loginBtn--phone:hover, .loginBtn--phone:focus {
+  background: rgb(52, 183, 245);
+}
+
+.closeImg {
+  cursor: pointer;
+  float: right;
+  margin-top: 5px;
+  width: 20px;
+}
+
+.home-page-section1-h2 {
+  text-align: center;
+  color: slategray;
+  font-family: Montserrat,sans-serif;
+  // box-shadow: 1px 4px 2px 2px rgba(0,0,0,0.5);
+}
+
+.detail-bar {
+  background: rgba(0, 0, 0, 0.01);
+  box-shadow: 2px -3px 3px 1px rgba(0,0,0,0.5);
+}
+
+.home-page-section1-h3-subheading {
+  letter-spacing: 1.5px;
+  color: #606e7c;
+}
+
+.top-margin {
+  width: 100%;
+  margin: 40px 0 0 0;
+}
+
+.align-icon {
+  margin-left: 28px !important;
+}
+
+.align-icon-whatsapp {
+  margin: 25px !important;
+  height: 55px !important;
+  margin-left: 5px !important;
+}
+
+.top-margin-description {
+  width: 100%;
+  margin: 20px 0 0 0;
+}
+
+.overflow-and-height-auto {
+  overflow: auto;
+  height: auto;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, sm)) {
+.logo {
+  width: 100px;
+  height: 75px;
+  display: block;
+}
+}
+
+@media (min-width: 872px) {
+.padding-left {
+  padding-left: 560px;
+}
+}
+
+@media (max-width: map-get($grid-breakpoints, sm)) {
+.logo {
+  width: 55px;
+  height: 55px;
+  display: block;
+}
+}
+
+@media (min-width: 480px) {
+  .crop {
+    width: 160px;
+    overflow: hidden;
+  }
+
+  .align-username {
+    text-align: center;
+  }
+}
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    .crop {
+      width: 140px;
+      overflow: hidden;
+    }
+
+    .align-username {
+      text-align: center;
+    }
+}
+
+@media (max-width: 372px) {
+  .crop {
+    width: 120px;
+    overflow: hidden;
+  }
+  .align-username {
+    text-align: center;
+  }
+}
+
+@media (max-width: 352px) {
+  .crop {
+    width: 80px;
+    overflow: hidden;
+  }
+  .align-username {
+    text-align: left;
+  }
+}
+
+@media (max-width: 313px) {
+  .crop {
+    width: 70px;
+    overflow: hidden;
+  }
+  .align-username {
+    text-align: left;
+  }
+}
+
+@media (max-width: 303px) {
+  .crop {
+    width: 40px;
+    overflow: hidden;
+  }
+  .align-username {
+    text-align: left;
+  }
+}
+
+.img {
+    width: 100%;
+}
+
+// Changes for Filter Dialog Start
+.noUi-connect {
+  background-color: #343a40;
+}
+
+.noUi-tooltip {
+  border: 0px;
+  color: #343a40;
+  padding: 0px;
+}
+
+.noUi-pips-horizontal {
+  height: auto;
+}
+
+.mat-dialog-container {
+  padding: 15px !important;
+}
+
+// Changes for Filter Dialog End
+
+.padding-top {
+   padding-top:30px;
+}
+
+.padding {
+  padding:20px;
+}
+
+.btn {
+  color:lightgrey !important;
+}
+
+.form-field{
+  display: inline !important;
+}
+
+.background-light-gray {
+  background-color: lightgray;
+}
+
+.li-item{
+  margin:0 100px 0 0;
+}
+
+.footer-text{
+  font-weight: bold;
+  color:lightgray;
+}
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+.footer-copyright{
+  font-size: x-small;
+}
+
+.display-flex{
+  display: flex;
+}
+
+.margin-right-15{
+  margin-right: 15px;
+}
+
+
+// Below is required to show the clear / cross button at end of search field
+// https://stackoverflow.com/questions/2803532/how-do-i-put-a-clear-button-inside-my-html-text-input-box-like-the-iphone-does
+input[type=search]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, xs)) {
+    .crs-header {
+        height: 60px;
+    }
+    .crs-body{
+      position: relative;
+      padding-bottom: 150px;
+      //overflow: auto;
+      }
+
+      /* .crs-footer{
+        position: absolute;
+        width: 100%;
+        height: 80px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      } */
+}
+
+.footer {
+    flex: 0 0 auto;
+    padding: 0 15px;
+    text-align: center;
+    .row {
+        padding: 0 0;
+        .links {
+            a {
+                transition: padding 0.5s;
+                display: inline-block;
+                color: lightgray;
+                padding: 20px 20px;
+                &:hover {
+                    text-decoration: none;
+                }
+                span {
+                    display: inline-block;
+                    width: 95px;
+                    padding: 0 0 0 0px;
+                    overflow: hidden;
+                    text-align: left;
+                    white-space: nowrap;
+                    transition: width 0.5s;
+                }
+            }
+            @media (min-width: map-get($grid-breakpoints, lg)) {
+                .signature {
+                    position: relative;
+                    color: lightgray;
+                }
+            }
+            @media (max-width: map-get($grid-breakpoints, md)) {
+                a {
+                    span {
+                        width: 0;
+                        padding: 0;
+                    }
+                }
+                .signature {
+                    position: relative;
+                    color: lightgray;
+                }
+            }
+            @media (max-width: map-get($grid-breakpoints, sm)) {
+                .signature {
+                    position: relative;
+                    color: lightgray;
+                }
+            }
+        }
+        @media (min-width: map-get($grid-breakpoints, xs)) {
+            .signature {
+                position: relative;
+                color: lightgray;
+            }
+        }
+    }
+}
+

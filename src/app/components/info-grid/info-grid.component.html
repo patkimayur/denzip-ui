@@ -1,0 +1,57 @@
+<div>
+  <span class="mat-h4 crs-page-sub-heading">Property Overview</span>
+  <section class="container">
+    <div class="row">
+        <span class="col-sm-12 d-md-none crs-internal-container">
+            <mat-grid-list cols="1" rowHeight="22px">
+                <mat-grid-tile class="crs-grid-border">
+                    <span class="mat-body-1 amenities-text">{{furnishingType | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border">
+                    <span class="mat-body-1 amenities-text">{{listingArea | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental">
+                    <span class="mat-body-1 amenities-text">{{foodPreference | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental">
+                    <span class="mat-body-1 amenities-text">{{transactionMode | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental">
+                    <span class="mat-body-1 amenities-text">{{tenantPreference | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="listingPossessionBy">
+                    <span class="mat-body-1 amenities-text">{{listingPossessionBy | titlecase}}</span>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </span>
+        <span class="col-md-12 d-none d-md-block crs-internal-container">
+            <mat-grid-list cols="2" rowHeight="22px">
+                <mat-grid-tile class="crs-grid-border">
+                    <span class="mat-body-1 amenities-text">{{furnishingType | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border">
+                    <span class="mat-body-1 amenities-text">{{listingArea | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental">
+                    <span class="mat-body-1 amenities-text">{{foodPreference | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental">
+                    <span class="mat-body-1 amenities-text">{{transactionMode | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" colspan=2 *ngIf="isListingRental && !listingPossessionBy">
+                    <span class="mat-body-1 amenities-text">{{tenantPreference | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental && listingPossessionBy">
+                    <span class="mat-body-1 amenities-text">{{tenantPreference | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" *ngIf="isListingRental && listingPossessionBy">
+                    <span class="mat-body-1 amenities-text">{{listingPossessionBy | titlecase}}</span>
+                </mat-grid-tile>
+                <mat-grid-tile class="crs-grid-border" colspan=2 *ngIf="isListingSale && listingPossessionBy">
+                    <span class="mat-body-1 amenities-text">{{listingPossessionBy | titlecase}}</span>
+                </mat-grid-tile>
+              </mat-grid-list>
+        </span>
+    </div>
+  </section>
+</div>

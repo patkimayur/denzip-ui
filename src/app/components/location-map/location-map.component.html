@@ -1,0 +1,40 @@
+<div>
+  <span class="mat-h4 crs-page-sub-heading">Location : On Best Effort Basis. Please contact Denzip / Owner for exact location</span>
+  
+  <div *ngIf="!isUserLoggedIn" style="position: relative;">
+    <div style="filter: blur(2px); -webkit-filter: blur(2px);">
+      <agm-map [latitude]="12.962324" [longitude]="77.596939" [zoom]=10 [zoomControl]="false"
+        [streetViewControl]="false" [mapDraggable]=false>
+        <agm-marker [latitude]="12.962324" [longitude]="77.596939" [markerClickable]=false>
+        </agm-marker>
+      </agm-map>
+    </div>
+    <div class="center">
+      <button class="btn bg-dark" mat-menu-item style="width: 100%; opacity: 0.8;" (click)="login()"
+        aria-label="Sign In for Location">
+        <span class="mat-body-1">Sign In for Location</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isUserLoggedIn">
+    <agm-map (mapClick)="closeWindow()" [fullscreenControl]='true' [latitude]="locationData.latitude"
+      [longitude]="locationData.longitude" [zoom]=14 (mapReady)="mapReady($event)">
+      <button id="MapButton" class="btn btn-dark" style="padding: 0px 5px 0px 5px;" (click)="openMap()"
+        aria-label="View Larger Map">
+        <span class="mat-body-1">View Larger Map</span>
+      </button>
+      <agm-marker (markerClick)=selectMarker(infoWindow) [latitude]=locationData.latitude
+        [longitude]=locationData.longitude>
+        <agm-info-window #infoWindow>{{locationData.title}}</agm-info-window>
+      </agm-marker>
+
+      <agm-marker (markerClick)=selectMarker(infoWindow)
+        *ngFor="let resource of localityData.categories[selectedLocalityCategoryIndex].resources"
+        [latitude]="resource.latitude" [longitude]="resource.longitude"
+        [iconUrl]="'assets/' +localityData.categories[selectedLocalityCategoryIndex].name + '.png'">
+        <agm-info-window #infoWindow>{{resource.name | uppercase}} - {{resource.duration | uppercase}}</agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+</div>

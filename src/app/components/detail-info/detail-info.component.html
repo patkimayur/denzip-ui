@@ -1,0 +1,14 @@
+<div *ngIf="propertyDetail">
+  <span class="mat-h4 crs-page-sub-heading">Property Detail</span>
+  <section class="container">
+    <div class="row">
+      <span class="col-sm-12 crs-internal-container">
+        <table style="width: 100%; border-collapse: separate; border-spacing: 1px;">
+          <tr style="width: 100%; " *ngFor="let detail of detailList">
+            <td class="crs-grid-border" style="padding: 0px 2px 0px 2px;"><span class="mat-body-1 detail-info-text">{{detail | titlecase}}</span></td>
+          </tr>
+        </table>
+      </span>
+    </div>
+  </section>
+</div>

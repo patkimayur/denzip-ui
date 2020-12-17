@@ -1,0 +1,37 @@
+<div>
+  <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+    <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()" aria-label="Clear">
+      <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+    </button>
+  </div>
+  <span class="mat-h4 crs-page-sub-heading">Filters</span>
+  <div *ngFor="let filter of filters">
+    <span class="mat-body-1"> {{filter.title | titlecase}} </span>
+
+    <div *ngIf="filter.filterType == 'RangeFilter'" style="padding-bottom: 20px; padding-top: 10px; padding-left: 15px; padding-right: 15px;">
+      <nouislider [config]="listingValueRangeConfig" [(ngModel)]="filter.range" class="bg-dark mat-body-1"></nouislider>
+    </div>
+
+    <div *ngIf="filter.filterType == 'ValueFilter'">
+      <section class="container">
+        <div class="row">
+          <span class="col-xs-6 crs-internal-container" *ngFor="let condition of filter.conditions">
+            <label *ngIf="condition.condition != 'No Preference'" style="margin-right: 5px;margin-left: 5px; border-radius: 4px; padding-left: 5px; padding-right: 5px;">
+              <input type="checkbox" [(ngModel)]="condition.applied">
+              <span class="mat-body-1">{{condition.condition}}</span>
+            </label>
+          </span>
+        </div>
+      </section>
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn bg-dark" mat-button (click)="onNoClick()" aria-label="Return">
+      <span class="mat-body-1">Return</span>
+    </button>
+    <button class="btn bg-dark" mat-button [mat-dialog-close]="filters" aria-label="Apply">
+      <span class="mat-body-1">Apply</span>
+    </button>
+  </div>
+</div>

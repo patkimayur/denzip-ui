@@ -1,0 +1,15 @@
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the theme.
+$crs-app-primary: mat-palette($mat-grey, 900);
+$crs-app-accent:  mat-palette($mat-amber, A200, A100, A400);
+$crs-app-warn:    mat-palette($mat-red);
+
+$crs-app-theme:   mat-light-theme($crs-app-primary, $crs-app-accent, $crs-app-warn);
+
+@include angular-material-theme($crs-app-theme);

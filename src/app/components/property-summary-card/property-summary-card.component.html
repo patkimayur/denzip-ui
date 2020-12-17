@@ -1,0 +1,20 @@
+<section class="container">
+  <div *ngIf="listings && listings.length > 0" class="row">
+    <span class="col-xs-12 col-sm-12 col-md-6 col-lg-6 crs-internal-container"
+      style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" *ngFor="let listing of listings; let i = index;"
+      (deferLoad)="listing.show = true">
+      <mat-card>
+        <mat-card-subtitle>
+          <app-text-grid [listing]="listing" [showLaunchIcon]=true (click)="redirect(listing)" style=" cursor: pointer;"></app-text-grid>
+        </mat-card-subtitle>
+        <app-ng-carousel [listing]="listing" [cardLayout]=true *ngIf="listing.show"></app-ng-carousel>
+        <app-interested-users [listing]="listing"></app-interested-users>
+        <mat-card-actions>
+          <app-listing-status-buttons [listing]="listing"></app-listing-status-buttons>
+        </mat-card-actions>
+      </mat-card>
+    </span>
+
+  </div>
+
+</section>

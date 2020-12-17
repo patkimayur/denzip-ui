@@ -1,0 +1,8 @@
+/* Below has been done as per https://stackoverflow.com/questions/44386840/angular-2-material-md-tab-size
+We need to live with it till we find a better solution to customize tab labels */
+/deep/.mat-tab-label, /deep/.mat-tab-label-active {
+    min-width: 0!important;
+    padding-left: 12px!important;
+    padding-right: 12px!important;
+    height: 22px!important;
+}

@@ -1,0 +1,16 @@
+<div class="container">
+    <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+        <span class="mat-h4 crs-dialog-title">Deactivate Listing</span>
+      <button class="btn" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClickForIc()" aria-label="Clear">
+        <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+      </button>
+    </div>
+  <div class="row dialog-content">
+    <mat-label> As per the Denzip policy this listing is not valid for cashback, as the listing was not active for minimum number of
+      days to be eligible for cashback. Would you still like to proceed with the deactivation?</mat-label>
+  </div>
+  <div class="row justify-content-center">
+    <button mat-button class="btn bg-dark margin-right-50" (click)="onNoClickForIc()" aria-label="Cancel">Cancel</button>
+    <button mat-button class="btn bg-dark" (click)="storeResultForIc()" cdkFocusInitial aria-label="Ok">Ok</button>
+  </div>
+</div>

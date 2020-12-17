@@ -1,0 +1,21 @@
+<div class="crs-dialog">
+    <div mat-dialog-actions class="mat-body-1" style="justify-content: flex-end; margin-bottom: 0px;">
+        <span class="mat-h4 crs-dialog-title">Login</span>
+      <button class="btn customButton shake" mat-menu-item style="width: auto;padding-left: 5px;padding-right: 5px;" (click)="onNoClick()" aria-label="Clear">
+        <mat-icon style="margin-right: 0px; color: #343a40">clear</mat-icon>
+      </button>
+    </div>
+  <div class="container">
+    <div class="row dialog-content">
+      <div class="col-xs-4">
+        <button mat-raised-button class="loginBtn loginBtn--phone" (click)="userMobileSignIn()" aria-label="Sign in with Phone">Sign in with Phone (SMS)</button>
+      </div>
+      <div class="col-xs-4">
+        <button mat-raised-button class="loginBtn loginBtn--google" (click)="googleSignIn()" aria-label="Sign in with Google">Sign in with Google</button>
+      </div>
+      <div class="col-xs-4">
+        <button mat-raised-button class="loginBtn loginBtn--facebook" (click)="facebookSignIn()" aria-label="Sign in with Facebook">Sign in with Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>

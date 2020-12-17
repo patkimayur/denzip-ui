@@ -1,0 +1,36 @@
+<h2>Broker Organization Mapping</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-group" style="padding-top: 20px;">
+    <span> Broker Org Phone Number </span>
+    <mat-form-field class="width100">
+      <div style="display: flex;">
+        <input matInput placeholder="Broker Org Phone Number" formControlName="brokerOrgPhoneNumber" [ngClass]="{ 'is-invalid': submitted && f.brokerOrgPhoneNumber.errors }"
+          required />
+      </div>
+    </mat-form-field>
+    <mat-error class="invalid-feedback" *ngIf="submitted && f['brokerOrgPhoneNumber'].errors && f['brokerOrgPhoneNumber'].errors.required">
+      Broker Org Phone Number is required
+    </mat-error>
+  </div>
+
+  <div class="form-group">
+    <span> Broker Phone Number </span>
+    <mat-form-field class="width100">
+      <div style="display: flex;">
+
+        <input matInput placeholder="Broker Phone Number" formControlName="brokerPhoneNumbers" [ngClass]="{ 'is-invalid': submitted && f.brokerPhoneNumbers.errors }"
+          required />
+      </div>
+    </mat-form-field>
+    <mat-error class="invalid-feedback" *ngIf="submitted && f['brokerPhoneNumbers'].errors && f['brokerPhoneNumbers'].errors.required">
+      Broker Phone Number is required
+    </mat-error>
+  </div>
+
+
+  <div class="form-group">
+    <button [disabled]="loading" class="btn bg-dark btn-primary" aria-label="Submit">Submit</button>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+  </div>
+</form>
